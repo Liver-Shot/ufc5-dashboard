@@ -1,43 +1,19 @@
 <!DOCTYPE html>
-<!-- saved from url=(0056)file:///C:/Users/marra/Downloads/ufc5-s22-dashboard.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UFC 5 · Season 22</title>
-<link href="./s22_files/css2" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Syncopate:wght@400;700&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:       #080a0e;
-  --bg2:      #0e1118;
-  --bg3:      #141820;
-  --bg4:      #1c2230;
-  --bg5:      #242c3a;
-  --red:      #e8354a;
-  --red-dim:  rgba(232,53,74,0.12);
-  --red-glow: rgba(232,53,74,0.25);
-  --cyan:     #00d4ff;
-  --cyan-dim: rgba(0,212,255,0.1);
-  --cyan-glow:rgba(0,212,255,0.2);
-  --win:      #00e57a;
-  --win-dim:  rgba(0,229,122,0.1);
-  --loss:     #e8354a;
-  --loss-dim: rgba(232,53,74,0.1);
-  --text:     #e2e8f4;
-  --text-dim: #6b7a96;
-  --text-faint:#3a4560;
-  --border:   rgba(255,255,255,0.05);
-  --border2:  rgba(0,212,255,0.15);
-}
+:root{--bg:#080a0e;--bg2:#0e1118;--bg3:#141820;--bg4:#1c2230;--bg5:#242c3a;--red:#e8354a;--red-dim:rgba(232,53,74,0.12);--cyan:#00d4ff;--cyan-dim:rgba(0,212,255,0.1);--cyan-glow:rgba(0,212,255,0.2);--win:#00e57a;--win-dim:rgba(0,229,122,0.1);--loss:#e8354a;--loss-dim:rgba(232,53,74,0.1);--text:#e2e8f4;--text-dim:#6b7a96;--text-faint:#3a4560;--border:rgba(255,255,255,0.05);--border2:rgba(0,212,255,0.15);}
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
-
-/* SCANLINE TEXTURE */
 body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:0;}
 
 /* LOADING */
 #loading{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;}
-.load-title{font-family:'Syncopate',sans-serif;font-size:32px;letter-spacing:8px;color:var(--cyan);animation:pulse 1.5s ease-in-out infinite;}
+.load-title{font-family:'Syncopate',sans-serif;font-size:28px;letter-spacing:8px;color:var(--cyan);animation:pulse 1.5s ease-in-out infinite;}
 .load-sub{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:4px;color:var(--text-dim);}
 .load-bar{width:200px;height:2px;background:var(--bg4);position:relative;overflow:hidden;}
 .load-bar::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,var(--cyan),transparent);animation:scan 1.2s ease-in-out infinite;}
@@ -46,150 +22,159 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 
 /* ERROR */
 #error{position:fixed;inset:0;background:var(--bg);z-index:998;display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:40px;text-align:center;}
-.err-title{font-family:'Syncopate',sans-serif;font-size:18px;color:var(--red);letter-spacing:4px;}
-.err-msg{font-family:'DM Mono',monospace;font-size:12px;color:var(--text-dim);max-width:480px;line-height:1.8;}
+.err-title{font-family:'Syncopate',sans-serif;font-size:16px;color:var(--red);letter-spacing:4px;}
+.err-msg{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-dim);max-width:480px;line-height:1.8;word-break:break-all;}
 
-/* HEADER */
-#hdr{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(8,10,14,0.95);border-bottom:1px solid var(--border2);backdrop-filter:blur(20px);display:flex;align-items:center;padding:0 24px;gap:24px;}
-.hdr-logo{font-family:'Syncopate',sans-serif;font-size:14px;letter-spacing:4px;color:var(--cyan);white-space:nowrap;}
-.hdr-divider{width:1px;height:20px;background:var(--border2);}
-.hdr-season{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--text-dim);}
-.hdr-record{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;letter-spacing:2px;margin-left:auto;}
+/* HEADER — fixed height, no overlap */
+#hdr{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,10,14,0.97);border-bottom:1px solid var(--border2);backdrop-filter:blur(20px);}
+.hdr-top{display:flex;align-items:center;padding:0 16px;height:48px;gap:12px;}
+.hdr-logo{font-family:'Syncopate',sans-serif;font-size:13px;letter-spacing:3px;color:var(--cyan);flex-shrink:0;}
+.hdr-div{width:1px;height:16px;background:var(--border2);flex-shrink:0;}
+.hdr-season{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--text-dim);flex-shrink:0;}
+.hdr-record{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;margin-left:auto;flex-shrink:0;}
 .hdr-w{color:var(--win);}
-.hdr-sep{color:var(--text-faint);margin:0 4px;}
+.hdr-sep{color:var(--text-faint);margin:0 3px;}
 .hdr-l{color:var(--loss);}
-.hdr-pct{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-dim);margin-left:8px;}
-.refresh-btn{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;padding:6px 14px;border:1px solid var(--border2);background:transparent;color:var(--cyan);cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.hdr-pct{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);margin-left:6px;}
+.hdr-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.refresh-btn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;padding:5px 10px;border:1px solid var(--border2);background:transparent;color:var(--cyan);cursor:pointer;transition:all 0.2s;white-space:nowrap;}
 .refresh-btn:hover{background:var(--cyan-dim);}
-.last-upd{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap;}
+.last-upd{font-family:'DM Mono',monospace;font-size:9px;color:var(--text-faint);display:none;}
+@media(min-width:600px){.last-upd{display:block;}}
 
 /* NAV */
-#nav{position:fixed;top:56px;left:0;right:0;z-index:99;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;}
-.nav-btn{font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;padding:0 20px;height:40px;white-space:nowrap;transition:all 0.2s;}
+#nav{position:fixed;top:48px;left:0;right:0;z-index:99;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+#nav::-webkit-scrollbar{display:none;}
+.nav-btn{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;padding:0 16px;height:38px;white-space:nowrap;transition:all 0.2s;flex-shrink:0;}
 .nav-btn:hover{color:var(--text);}
 .nav-btn.active{color:var(--cyan);border-bottom-color:var(--cyan);}
 
 /* MAIN */
-#main{margin-top:96px;padding:28px 24px;max-width:1440px;margin-left:auto;margin-right:auto;position:relative;z-index:1;}
+#main{margin-top:86px;padding:20px 16px;max-width:1440px;margin-left:auto;margin-right:auto;position:relative;z-index:1;}
 .tab{display:none;}.tab.active{display:block;}
 
 /* SECTION HEADER */
-.sec-hdr{display:flex;align-items:baseline;gap:12px;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border);}
-.sec-title{font-family:'Syncopate',sans-serif;font-size:11px;letter-spacing:4px;color:var(--cyan);}
-.sec-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-faint);letter-spacing:2px;}
+.sec-hdr{display:flex;align-items:baseline;gap:10px;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.sec-title{font-family:'Syncopate',sans-serif;font-size:10px;letter-spacing:3px;color:var(--cyan);}
+.sec-sub{font-family:'DM Mono',monospace;font-size:9px;color:var(--text-faint);letter-spacing:1px;}
 
-/* GRID */
-.g{display:grid;gap:12px;margin-bottom:20px;}
+/* GRIDS */
+.g{display:grid;gap:10px;margin-bottom:16px;}
 .g-5{grid-template-columns:repeat(5,1fr);}
 .g-4{grid-template-columns:repeat(4,1fr);}
 .g-3{grid-template-columns:repeat(3,1fr);}
 .g-2{grid-template-columns:repeat(2,1fr);}
 
 /* CARDS */
-.card{background:var(--bg2);border:1px solid var(--border);padding:18px;position:relative;overflow:hidden;transition:border-color 0.2s;}
+.card{background:var(--bg2);border:1px solid var(--border);padding:16px;position:relative;overflow:hidden;transition:border-color 0.2s;}
 .card:hover{border-color:var(--border2);}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan-dim),transparent);opacity:0;}
-.card:hover::before{opacity:1;}
-.card-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-faint);margin-bottom:10px;}
-.card-val{font-family:'Rajdhani',sans-serif;font-size:40px;font-weight:700;line-height:1;color:var(--text);}
+.card-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px;}
+.card-val{font-family:'Rajdhani',sans-serif;font-size:36px;font-weight:700;line-height:1;color:var(--text);}
 .card-val.cyan{color:var(--cyan);}
 .card-val.win{color:var(--win);}
 .card-val.loss{color:var(--loss);}
-.card-val.sm{font-size:28px;}
-.card-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-faint);margin-top:6px;}
+.card-val.sm{font-size:24px;}
+.card-sub{font-family:'DM Mono',monospace;font-size:9px;color:var(--text-faint);margin-top:5px;}
 
-/* STAT BAR */
-.stat-bar-wrap{background:var(--bg2);border:1px solid var(--border);padding:20px;margin-bottom:12px;}
-.stat-bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+/* STAT BARS */
+.stat-bar-wrap{background:var(--bg2);border:1px solid var(--border);padding:16px;margin-bottom:12px;}
+.stat-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
 .stat-bar-row:last-child{margin-bottom:0;}
-.sbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text-dim);width:120px;flex-shrink:0;}
-.sb-track{flex:1;height:20px;background:var(--bg4);position:relative;overflow:hidden;}
-.sb-fill-w{height:100%;background:linear-gradient(90deg,var(--win),rgba(0,229,122,0.6));display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-family:'DM Mono',monospace;font-size:9px;color:rgba(0,0,0,0.8);font-weight:500;transition:width 0.6s ease;}
-.sb-fill-l{height:100%;background:linear-gradient(90deg,var(--loss),rgba(232,53,74,0.6));display:flex;align-items:center;padding-left:8px;font-family:'DM Mono',monospace;font-size:9px;color:rgba(0,0,0,0.8);font-weight:500;transition:width 0.6s ease;}
-.sb-counts{font-family:'Rajdhani',monospace;font-size:14px;font-weight:700;flex-shrink:0;width:60px;text-align:right;}
+.sbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--text-dim);width:90px;flex-shrink:0;}
+.sb-track{flex:1;height:18px;background:var(--bg4);overflow:hidden;}
+.sb-inner{display:flex;height:100%;}
+.sb-w{height:100%;background:linear-gradient(90deg,var(--win),rgba(0,229,122,0.6));display:flex;align-items:center;justify-content:flex-end;padding-right:6px;font-family:'DM Mono',monospace;font-size:8px;color:rgba(0,0,0,0.8);}
+.sb-l{height:100%;background:linear-gradient(90deg,var(--loss),rgba(232,53,74,0.6));display:flex;align-items:center;padding-left:6px;font-family:'DM Mono',monospace;font-size:8px;color:rgba(0,0,0,0.8);}
+.sb-counts{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;flex-shrink:0;width:48px;text-align:right;}
 
 /* TABLE */
-.tbl-wrap{background:var(--bg2);border:1px solid var(--border);overflow:hidden;overflow-x:auto;margin-bottom:20px;}
+.tbl-wrap{background:var(--bg2);border:1px solid var(--border);overflow:hidden;overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:16px;}
 table{width:100%;border-collapse:collapse;}
-th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-faint);padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap;background:var(--bg3);}
-td{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:500;color:var(--text);padding:8px 12px;border-bottom:1px solid var(--border);white-space:nowrap;}
+th{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--text-faint);padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap;background:var(--bg3);}
+td{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:500;color:var(--text);padding:7px 10px;border-bottom:1px solid var(--border);white-space:nowrap;}
 tbody tr:hover td{background:var(--bg3);}
-.div-hdr td{background:var(--bg3)!important;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);padding:7px 12px;border-top:1px solid var(--border2);}
-.fighter-td{padding-left:20px!important;border-left:2px solid var(--cyan)!important;}
+.div-hdr td{background:var(--bg3)!important;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);padding:6px 10px;border-top:1px solid var(--border2);}
+.div-total td{background:var(--bg4)!important;font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);padding:7px 10px;border-top:1px solid var(--border);}
+.div-total td:first-child{color:var(--cyan);font-weight:700;}
+.fighter-td{padding-left:18px!important;border-left:2px solid var(--cyan)!important;}
 
 /* PILLS */
-.pill{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;padding:2px 8px;text-transform:uppercase;}
+.pill{display:inline-block;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;padding:2px 7px;text-transform:uppercase;}
 .pill-win{background:var(--win-dim);color:var(--win);border:1px solid rgba(0,229,122,0.3);}
 .pill-loss{background:var(--loss-dim);color:var(--loss);border:1px solid rgba(232,53,74,0.3);}
 .pill-ko{background:rgba(232,53,74,0.15);color:#ff6b7a;border:1px solid rgba(232,53,74,0.3);}
 .pill-sub{background:rgba(0,212,255,0.1);color:var(--cyan);border:1px solid rgba(0,212,255,0.3);}
 .pill-dec{background:rgba(255,200,60,0.1);color:#ffc83c;border:1px solid rgba(255,200,60,0.3);}
 
-/* FILTER BAR */
-.filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
-.fb{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border:1px solid var(--border);background:transparent;color:var(--text-dim);cursor:pointer;transition:all 0.2s;}
+/* FILTERS */
+.filter-bar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.fb{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border);background:transparent;color:var(--text-dim);cursor:pointer;transition:all 0.2s;}
 .fb:hover{border-color:var(--cyan);color:var(--cyan);}
 .fb.active{border-color:var(--cyan);background:var(--cyan-dim);color:var(--cyan);}
 
 /* INSIGHT CARDS */
-.insight-card{background:var(--bg2);border:1px solid var(--border);padding:20px;}
-.ic-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;}
-.ranked-row{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);}
+.insight-card{background:var(--bg2);border:1px solid var(--border);padding:16px;}
+.ic-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:12px;}
+.ranked-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);}
 .ranked-row:last-child{border-bottom:none;}
-.rk-num{font-family:'Rajdhani',sans-serif;font-size:24px;font-weight:700;color:var(--text-faint);width:28px;flex-shrink:0;}
+.rk-num{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--text-faint);width:24px;flex-shrink:0;}
 .rk-num.top{color:var(--cyan);}
-.rk-info{flex:1;}
-.rk-name{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:600;}
-.rk-sub{font-family:'DM Mono',monospace;font-size:9px;color:var(--text-faint);letter-spacing:1px;margin-top:2px;}
-.rk-val{font-family:'Rajdhani',sans-serif;font-size:24px;font-weight:700;flex-shrink:0;}
+.rk-info{flex:1;min-width:0;}
+.rk-name{font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.rk-sub{font-family:'DM Mono',monospace;font-size:8px;color:var(--text-faint);letter-spacing:1px;margin-top:2px;}
+.rk-val{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;flex-shrink:0;}
 .rk-val.win{color:var(--win);}
 .rk-val.loss{color:var(--loss);}
 .rk-val.cyan{color:var(--cyan);}
 
 /* ADV STAT ROWS */
-.adv-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);}
+.adv-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);}
 .adv-row:last-child{border-bottom:none;}
-.adv-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text-dim);}
-.adv-vals{display:flex;gap:20px;align-items:baseline;}
-.adv-total{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:var(--text);}
-.adv-avg{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-faint);}
+.adv-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--text-dim);}
+.adv-vals{display:flex;gap:16px;align-items:baseline;}
+.adv-total{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;}
+.adv-avg{font-family:'DM Mono',monospace;font-size:9px;color:var(--text-faint);}
 
 /* STREAK */
-.streak-big{font-family:'Rajdhani',sans-serif;font-size:72px;font-weight:700;line-height:1;}
-.streak-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--text-faint);margin-top:4px;}
+.streak-big{font-family:'Rajdhani',sans-serif;font-size:64px;font-weight:700;line-height:1;}
+.streak-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-faint);margin-top:4px;}
 
 /* NO DATA */
-.no-data{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-faint);text-align:center;padding:40px;letter-spacing:2px;}
+.no-data{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-faint);text-align:center;padding:32px;letter-spacing:2px;}
 
-@media(max-width:1000px){.g-5{grid-template-columns:repeat(3,1fr);}.g-4{grid-template-columns:repeat(2,1fr);}.g-3{grid-template-columns:1fr 1fr;}}
-@media(max-width:640px){.g-5{grid-template-columns:repeat(2,1fr);}.g-4{grid-template-columns:1fr 1fr;}.g-3,.g-2{grid-template-columns:1fr;}#main{padding:16px 12px;}}
+@media(max-width:900px){.g-5{grid-template-columns:repeat(3,1fr);}.g-4{grid-template-columns:repeat(2,1fr);}.g-3{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.g-5{grid-template-columns:repeat(2,1fr);}.g-4,.g-3,.g-2{grid-template-columns:1fr;}#main{padding:14px 10px;}}
 </style>
 </head>
 <body>
 
-<div id="loading" style="display: none;">
+<div id="loading">
   <div class="load-title">UFC 5</div>
-  <div class="load-sub">Season 22 · Loading fight data</div>
+  <div class="load-sub">Season 22 · Loading</div>
   <div class="load-bar"></div>
 </div>
 
-<div id="error" style="display: none;">
+<div id="error">
   <div class="err-title">Connection Failed</div>
-  <div class="err-msg" id="err-msg">Could not load fight data. Check that SHEET_URL is set correctly and the Apps Script is deployed with Anyone access.</div>
+  <div class="err-msg" id="err-msg"></div>
 </div>
 
 <header id="hdr">
-  <div class="hdr-logo">UFC 5</div>
-  <div class="hdr-divider"></div>
-  <div class="hdr-season">SEASON 22</div>
-  <div class="hdr-record" style="margin-left:auto">
-    <span class="hdr-w" id="hdr-w">6</span>
-    <span class="hdr-sep">–</span>
-    <span class="hdr-l" id="hdr-l">8</span>
-    <span class="hdr-pct" id="hdr-pct">43%</span>
+  <div class="hdr-top">
+    <div class="hdr-logo">UFC 5</div>
+    <div class="hdr-div"></div>
+    <div class="hdr-season">S22</div>
+    <div class="hdr-record">
+      <span class="hdr-w" id="hdr-w">—</span>
+      <span class="hdr-sep">–</span>
+      <span class="hdr-l" id="hdr-l">—</span>
+      <span class="hdr-pct" id="hdr-pct"></span>
+    </div>
+    <div class="hdr-actions">
+      <span class="last-upd" id="last-upd"></span>
+      <button class="refresh-btn" onclick="loadData()">↻</button>
+    </div>
   </div>
-  <span class="last-upd" id="last-upd">Updated 12:48 PM</span>
-  <button class="refresh-btn" onclick="loadData()">↻ REFRESH</button>
 </header>
 
 <nav id="nav">
@@ -197,1158 +182,209 @@ tbody tr:hover td{background:var(--bg3);}
   <button class="nav-btn" data-tab="fighters">My Fighters</button>
   <button class="nav-btn" data-tab="opponents">Opponents</button>
   <button class="nav-btn" data-tab="log">Fight Log</button>
-  <button class="nav-btn" data-tab="advanced">Advanced Stats</button>
+  <button class="nav-btn" data-tab="advanced">Advanced</button>
   <button class="nav-btn" data-tab="insights">Insights</button>
 </nav>
 
 <main id="main">
 
-  <!-- OVERVIEW -->
   <div class="tab active" id="tab-overview">
-    <div class="sec-hdr"><span class="sec-title">Overview</span><span class="sec-sub">Season 22 · Fights with full stats only</span></div>
-    <div class="g g-5" id="ov-cards"><div class="card"><div class="card-label">Fights</div><div class="card-val ">14</div></div><div class="card"><div class="card-label">Wins</div><div class="card-val win">6</div></div><div class="card"><div class="card-label">Losses</div><div class="card-val loss">8</div></div><div class="card"><div class="card-label">Win Rate</div><div class="card-val cyan">43%</div></div><div class="card"><div class="card-label">Finish Rate</div><div class="card-val ">100%</div></div></div>
+    <div class="sec-hdr"><span class="sec-title">Overview</span><span class="sec-sub">Season 22 · Full stats fights only</span></div>
+    <div class="g g-5" id="ov-cards"></div>
     <div class="sec-hdr"><span class="sec-title">Win / Loss</span></div>
-    <div class="stat-bar-wrap" id="ov-bars"><div class="stat-bar-row">
-      <div class="sbl">8</div>
-      <div class="sb-track">
-        <div style="display:flex;height:100%">
-          <div class="sb-fill-w" style="width:42.857142857142854%">6</div>
-          <div class="sb-fill-l" style="width:57.14285714285714%">8</div>
-        </div>
-      </div>
-      <div class="sb-counts" style="color:var(--loss)">6–8</div>
-    </div><div class="stat-bar-row">
-      <div class="sbl">8</div>
-      <div class="sb-track">
-        <div style="display:flex;height:100%">
-          <div class="sb-fill-w" style="width:42.857142857142854%">6</div>
-          <div class="sb-fill-l" style="width:57.14285714285714%">8</div>
-        </div>
-      </div>
-      <div class="sb-counts" style="color:var(--loss)">6–8</div>
-    </div><div class="stat-bar-row">
-      <div class="sbl">0</div>
-      <div class="sb-track">
-        <div style="display:flex;height:100%">
-          <div class="sb-fill-w" style="width:0%"></div>
-          <div class="sb-fill-l" style="width:0%"></div>
-        </div>
-      </div>
-      <div class="sb-counts" style="color:var(--loss)">0–0</div>
-    </div><div class="stat-bar-row">
-      <div class="sbl">0</div>
-      <div class="sb-track">
-        <div style="display:flex;height:100%">
-          <div class="sb-fill-w" style="width:0%"></div>
-          <div class="sb-fill-l" style="width:0%"></div>
-        </div>
-      </div>
-      <div class="sb-counts" style="color:var(--loss)">0–0</div>
-    </div></div>
-    <div class="g g-4" id="ov-adv-cards"><div class="card"><div class="card-label">Avg Sig Str %</div><div class="card-val sm cyan">53.3%</div><div class="card-sub">per fight avg</div></div><div class="card"><div class="card-label">Avg Total Str Landed</div><div class="card-val sm ">—</div><div class="card-sub">per fight avg</div></div><div class="card"><div class="card-label">Avg TDs Landed</div><div class="card-val sm ">0.3</div><div class="card-sub">per fight avg</div></div><div class="card"><div class="card-label">Avg Control Time</div><div class="card-val sm ">5:46</div><div class="card-sub">per fight avg</div></div></div>
+    <div class="stat-bar-wrap" id="ov-bars"></div>
+    <div class="sec-hdr"><span class="sec-title">Striking & Grappling Averages</span></div>
+    <div class="g g-4" id="ov-adv"></div>
     <div class="sec-hdr"><span class="sec-title">Method Breakdown</span></div>
-    <div class="g g-2" id="ov-methods">
-    <div class="card">
-      <div class="card-label" style="margin-bottom:14px">Wins by Method</div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-    <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--text-dim);width:80px;flex-shrink:0">KO / TKO</div>
-    <div style="flex:1;height:16px;background:var(--bg4);overflow:hidden">
-      <div style="width:100%;height:100%;background:var(--loss)"></div>
-    </div>
-    <div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:18px;font-weight:700;width:24px;text-align:right">6</div>
-  </div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-    <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--text-dim);width:80px;flex-shrink:0">Submission</div>
-    <div style="flex:1;height:16px;background:var(--bg4);overflow:hidden">
-      <div style="width:0%;height:100%;background:var(--cyan)"></div>
-    </div>
-    <div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:18px;font-weight:700;width:24px;text-align:right">0</div>
-  </div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-    <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--text-dim);width:80px;flex-shrink:0">Decision</div>
-    <div style="flex:1;height:16px;background:var(--bg4);overflow:hidden">
-      <div style="width:0%;height:100%;background:#ffc83c"></div>
-    </div>
-    <div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:18px;font-weight:700;width:24px;text-align:right">0</div>
-  </div>
-    </div>
-    <div class="card">
-      <div class="card-label" style="margin-bottom:14px">Losses by Method</div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-    <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--text-dim);width:80px;flex-shrink:0">KO / TKO</div>
-    <div style="flex:1;height:16px;background:var(--bg4);overflow:hidden">
-      <div style="width:100%;height:100%;background:var(--loss)"></div>
-    </div>
-    <div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:18px;font-weight:700;width:24px;text-align:right">8</div>
-  </div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-    <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--text-dim);width:80px;flex-shrink:0">Submission</div>
-    <div style="flex:1;height:16px;background:var(--bg4);overflow:hidden">
-      <div style="width:0%;height:100%;background:var(--cyan)"></div>
-    </div>
-    <div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:18px;font-weight:700;width:24px;text-align:right">0</div>
-  </div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-    <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--text-dim);width:80px;flex-shrink:0">Decision</div>
-    <div style="flex:1;height:16px;background:var(--bg4);overflow:hidden">
-      <div style="width:0%;height:100%;background:#ffc83c"></div>
-    </div>
-    <div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:18px;font-weight:700;width:24px;text-align:right">0</div>
-  </div>
-    </div></div>
+    <div class="g g-2" id="ov-methods"></div>
   </div>
 
-  <!-- MY FIGHTERS -->
   <div class="tab" id="tab-fighters">
-    <div class="sec-hdr"><span class="sec-title">My Fighters</span><span class="sec-sub">Min 1 fight · Sorted by fights</span></div>
-    <div class="filter-bar" id="f-filters"><button class="fb active" data-d="All">All</button><button class="fb " data-d="Light Heavyweight">Light Heavyweight</button><button class="fb " data-d="Middleweight">Middleweight</button><button class="fb " data-d="Welterweight">Welterweight</button><button class="fb " data-d="Lightweight">Lightweight</button><button class="fb " data-d="Featherweight">Featherweight</button></div>
+    <div class="sec-hdr"><span class="sec-title">My Fighters</span><span class="sec-sub">Per fighter + division totals</span></div>
+    <div class="filter-bar" id="f-filters"></div>
     <div class="tbl-wrap">
       <table><thead><tr>
-        <th>Fighter</th><th>Div</th><th>W</th><th>L</th><th>Win%</th>
-        <th>Sig Str L/A</th><th>Sig%</th><th>Tot Str L/A</th><th>TDs</th><th>Ctrl</th><th>KDs</th>
-        <th>Opp Sig Str</th><th>Opp Sig%</th><th>Opp Tot Str</th><th>Opp TDs</th><th>Opp Ctrl</th><th>Opp KDs</th>
-      </tr></thead><tbody id="f-body"><tr class="div-hdr"><td colspan="17">Light Heavyweight</td></tr><tr>
-        <td class="fighter-td" style="font-weight:600">Daniel Cormier</td>
-        <td style="color:var(--text-dim);font-size:11px">Light Heavyweight</td>
-        <td style="color:var(--win)">1</td>
-        <td style="color:var(--loss)">0</td>
-        <td style="color:var(--win);font-weight:700">100%</td>
-        <td>—</td>
-        <td style="color:var(--cyan)">—</td>
-        <td>—</td>
-        <td>—</td>
-        <td>6:12</td>
-        <td>0.0</td>
-        
-        <td>—</td>
-        <td style="color:var(--loss)">—</td>
-        <td>—</td>
-        <td>—</td>
-        <td>5:32</td>
-        <td>0.0</td>
-      </tr><tr>
-        <td class="fighter-td" style="font-weight:600">Anthony Johnson</td>
-        <td style="color:var(--text-dim);font-size:11px">Light Heavyweight</td>
-        <td style="color:var(--win)">0</td>
-        <td style="color:var(--loss)">1</td>
-        <td style="color:var(--loss);font-weight:700">0%</td>
-        <td>23/47</td>
-        <td style="color:var(--cyan)">49%</td>
-        <td>—</td>
-        <td>—</td>
-        <td>5:28</td>
-        <td>2.0</td>
-        
-        <td>36/66</td>
-        <td style="color:var(--loss)">55%</td>
-        <td>55/105</td>
-        <td>0/4</td>
-        <td>6:07</td>
-        <td>5.0</td>
-      </tr><tr class="div-hdr"><td colspan="17">Middleweight</td></tr><tr>
-        <td class="fighter-td" style="font-weight:600">Kamaru Usman</td>
-        <td style="color:var(--text-dim);font-size:11px">Middleweight</td>
-        <td style="color:var(--win)">1</td>
-        <td style="color:var(--loss)">0</td>
-        <td style="color:var(--win);font-weight:700">100%</td>
-        <td>20/39</td>
-        <td style="color:var(--cyan)">51%</td>
-        <td>—</td>
-        <td>—</td>
-        <td>6:18</td>
-        <td>1.0</td>
-        
-        <td>28/43</td>
-        <td style="color:var(--loss)">65%</td>
-        <td>—</td>
-        <td>—</td>
-        <td>5:00</td>
-        <td>0.0</td>
-      </tr><tr>
-        <td class="fighter-td" style="font-weight:600">Jacaré Souza</td>
-        <td style="color:var(--text-dim);font-size:11px">Middleweight</td>
-        <td style="color:var(--win)">0</td>
-        <td style="color:var(--loss)">1</td>
-        <td style="color:var(--loss);font-weight:700">0%</td>
-        <td>19/39</td>
-        <td style="color:var(--cyan)">49%</td>
-        <td>—</td>
-        <td>—</td>
-        <td>7:58</td>
-        <td>0.0</td>
-        
-        <td>38/73</td>
-        <td style="color:var(--loss)">52%</td>
-        <td>95/156</td>
-        <td>—</td>
-        <td>13:33</td>
-        <td>1.0</td>
-      </tr><tr>
-        <td class="fighter-td" style="font-weight:600">Reinier de Ridder</td>
-        <td style="color:var(--text-dim);font-size:11px">Middleweight</td>
-        <td style="color:var(--win)">0</td>
-        <td style="color:var(--loss)">1</td>
-        <td style="color:var(--loss);font-weight:700">0%</td>
-        <td>—</td>
-        <td style="color:var(--cyan)">—</td>
-        <td>—</td>
-        <td>0/4</td>
-        <td>5:03</td>
-        <td>0.0</td>
-        
-        <td>16/43</td>
-        <td style="color:var(--loss)">37%</td>
-        <td>23/62</td>
-        <td>—</td>
-        <td>5:02</td>
-        <td>3.0</td>
-      </tr><tr>
-        <td class="fighter-td" style="font-weight:600">Israel Adesanya</td>
-        <td style="color:var(--text-dim);font-size:11px">Middleweight</td>
-        <td style="color:var(--win)">1</td>
-        <td style="color:var(--loss)">0</td>
-        <td style="color:var(--win);font-weight:700">100%</td>
-        <td>30/32</td>
-        <td style="color:var(--cyan)">94%</td>
-        <td>—</td>
-        <td>—</td>
-        <td>5:02</td>
-        <td>2.0</td>
-        
-        <td>13/48</td>
-        <td style="color:var(--loss)">27%</td>
-        <td>18/66</td>
-        <td>0/1</td>
-        <td>5:05</td>
-        <td>0.0</td>
-      </tr><tr class="div-hdr"><td colspan="17">Welterweight</td></tr><tr>
-        <td class="fighter-td" style="font-weight:600">Ian Machado Garry</td>
-        <td style="color:var(--text-dim);font-size:11px">Welterweight</td>
-        <td style="color:var(--win)">0</td>
-        <td style="color:var(--loss)">1</td>
-        <td style="color:var(--loss);font-weight:700">0%</td>
-        <td>27/105</td>
-        <td style="color:var(--cyan)">26%</td>
-        <td>—</td>
-        <td>—</td>
-        <td>5:08</td>
-        <td>1.0</td>
-        
-        <td>46/89</td>
-        <td style="color:var(--loss)">52%</td>
-        <td>80/149</td>
-        <td>—</td>
-        <td>6:08</td>
-        <td>3.0</td>
-      </tr><tr class="div-hdr"><td colspan="17">Lightweight</td></tr><tr>
-        <td class="fighter-td" style="font-weight:600">Benoît Saint Denis</td>
-        <td style="color:var(--text-dim);font-size:11px">Lightweight</td>
-        <td style="color:var(--win)">1</td>
-        <td style="color:var(--loss)">0</td>
-        <td style="color:var(--win);font-weight:700">100%</td>
-        <td>46/81</td>
-        <td style="color:var(--cyan)">57%</td>
-        <td>—</td>
-        <td>—</td>
-        <td>5:50</td>
-        <td>1.0</td>
-        
-        <td>36/113</td>
-        <td style="color:var(--loss)">32%</td>
-        <td>75/197</td>
-        <td>—</td>
-        <td>5:01</td>
-        <td>1.0</td>
-      </tr><tr class="div-hdr"><td colspan="17">Featherweight</td></tr><tr>
-        <td class="fighter-td" style="font-weight:600">Aljamain Sterling</td>
-        <td style="color:var(--text-dim);font-size:11px">Featherweight</td>
-        <td style="color:var(--win)">1</td>
-        <td style="color:var(--loss)">2</td>
-        <td style="color:var(--loss);font-weight:700">33%</td>
-        <td>72/148</td>
-        <td style="color:var(--cyan)">49%</td>
-        <td>—</td>
-        <td>0/1</td>
-        <td>6:09</td>
-        <td>1.0</td>
-        
-        <td>75/185</td>
-        <td style="color:var(--loss)">41%</td>
-        <td>92/154</td>
-        <td>—</td>
-        <td>5:24</td>
-        <td>1.0</td>
-      </tr><tr>
-        <td class="fighter-td" style="font-weight:600">Conor McGregor</td>
-        <td style="color:var(--text-dim);font-size:11px">Featherweight</td>
-        <td style="color:var(--win)">1</td>
-        <td style="color:var(--loss)">1</td>
-        <td style="color:var(--win);font-weight:700">50%</td>
-        <td>59/99</td>
-        <td style="color:var(--cyan)">60%</td>
-        <td>—</td>
-        <td>0/1</td>
-        <td>5:00</td>
-        <td>2.0</td>
-        
-        <td>42/142</td>
-        <td style="color:var(--loss)">30%</td>
-        <td>75/214</td>
-        <td>—</td>
-        <td>5:03</td>
-        <td>0.5</td>
-      </tr><tr>
-        <td class="fighter-td" style="font-weight:600">José Aldo</td>
-        <td style="color:var(--text-dim);font-size:11px">Featherweight</td>
-        <td style="color:var(--win)">0</td>
-        <td style="color:var(--loss)">1</td>
-        <td style="color:var(--loss);font-weight:700">0%</td>
-        <td>37/66</td>
-        <td style="color:var(--cyan)">56%</td>
-        <td>—</td>
-        <td>—</td>
-        <td>5:15</td>
-        <td>0.0</td>
-        
-        <td>44/76</td>
-        <td style="color:var(--loss)">58%</td>
-        <td>73/128</td>
-        <td>—</td>
-        <td>5:37</td>
-        <td>2.0</td>
-      </tr></tbody></table>
+        <th>Fighter</th><th>W</th><th>L</th><th>Win%</th>
+        <th>Sig L/A</th><th>Sig%</th><th>Tot L/A</th>
+        <th>TD L/A</th><th>Ctrl/f</th><th>KD/f</th>
+        <th>OSig L/A</th><th>OSig%</th><th>OTot L/A</th>
+        <th>OTD L/A</th><th>OCtrl/f</th><th>OKD/f</th>
+      </tr></thead><tbody id="f-body"></tbody></table>
     </div>
   </div>
 
-  <!-- OPPONENTS -->
   <div class="tab" id="tab-opponents">
-    <div class="sec-hdr"><span class="sec-title">Opponents</span><span class="sec-sub">How they perform against you</span></div>
-    <div class="filter-bar" id="o-filters"><button class="fb active" data-d="All">All</button><button class="fb " data-d="Light Heavyweight">Light Heavyweight</button><button class="fb " data-d="Middleweight">Middleweight</button><button class="fb " data-d="Welterweight">Welterweight</button><button class="fb " data-d="Lightweight">Lightweight</button><button class="fb " data-d="Featherweight">Featherweight</button></div>
+    <div class="sec-hdr"><span class="sec-title">Opponents</span><span class="sec-sub">Their stats against you + division totals</span></div>
+    <div class="filter-bar" id="o-filters"></div>
     <div class="tbl-wrap">
       <table><thead><tr>
-        <th>Opponent</th><th>Div</th><th>Vs You W</th><th>Vs You L</th><th>Win%</th>
-        <th>Sig Str L/A</th><th>Sig%</th><th>Tot Str L/A</th><th>TDs</th><th>Ctrl</th><th>KDs</th>
-      </tr></thead><tbody id="o-body"><tr class="div-hdr"><td colspan="11">Light Heavyweight</td></tr><tr>
-          <td class="fighter-td" style="font-weight:600">Alex Pereira</td>
-          <td style="color:var(--text-dim);font-size:11px">Light Heavyweight</td>
-          <td style="color:var(--loss)">0</td>
-          <td style="color:var(--win)">1</td>
-          <td style="color:var(--win);font-weight:700">0%</td>
-          <td>—</td>
-          <td style="color:var(--loss)">—</td>
-          <td>—</td>
-          <td>—</td>
-          <td>5:32</td>
-          <td>0.0</td>
-        </tr><tr>
-          <td class="fighter-td" style="font-weight:600">Carlos Ulberg</td>
-          <td style="color:var(--text-dim);font-size:11px">Light Heavyweight</td>
-          <td style="color:var(--loss)">1</td>
-          <td style="color:var(--win)">0</td>
-          <td style="color:var(--loss);font-weight:700">100%</td>
-          <td>36/66</td>
-          <td style="color:var(--loss)">55%</td>
-          <td>55/105</td>
-          <td>0/4</td>
-          <td>6:07</td>
-          <td>5.0</td>
-        </tr><tr class="div-hdr"><td colspan="11">Middleweight</td></tr><tr>
-          <td class="fighter-td" style="font-weight:600">Darren Till</td>
-          <td style="color:var(--text-dim);font-size:11px">Middleweight</td>
-          <td style="color:var(--loss)">0</td>
-          <td style="color:var(--win)">1</td>
-          <td style="color:var(--win);font-weight:700">0%</td>
-          <td>28/43</td>
-          <td style="color:var(--loss)">65%</td>
-          <td>—</td>
-          <td>—</td>
-          <td>5:00</td>
-          <td>0.0</td>
-        </tr><tr>
-          <td class="fighter-td" style="font-weight:600">Chael Sonnen</td>
-          <td style="color:var(--text-dim);font-size:11px">Middleweight</td>
-          <td style="color:var(--loss)">1</td>
-          <td style="color:var(--win)">0</td>
-          <td style="color:var(--loss);font-weight:700">100%</td>
-          <td>38/73</td>
-          <td style="color:var(--loss)">52%</td>
-          <td>95/156</td>
-          <td>—</td>
-          <td>13:33</td>
-          <td>1.0</td>
-        </tr><tr>
-          <td class="fighter-td" style="font-weight:600">Alex Pereira</td>
-          <td style="color:var(--text-dim);font-size:11px">Middleweight</td>
-          <td style="color:var(--loss)">1</td>
-          <td style="color:var(--win)">0</td>
-          <td style="color:var(--loss);font-weight:700">100%</td>
-          <td>16/43</td>
-          <td style="color:var(--loss)">37%</td>
-          <td>23/62</td>
-          <td>—</td>
-          <td>5:02</td>
-          <td>3.0</td>
-        </tr><tr>
-          <td class="fighter-td" style="font-weight:600">Robbie Lawler</td>
-          <td style="color:var(--text-dim);font-size:11px">Middleweight</td>
-          <td style="color:var(--loss)">0</td>
-          <td style="color:var(--win)">1</td>
-          <td style="color:var(--win);font-weight:700">0%</td>
-          <td>13/48</td>
-          <td style="color:var(--loss)">27%</td>
-          <td>18/66</td>
-          <td>0/1</td>
-          <td>5:05</td>
-          <td>0.0</td>
-        </tr><tr class="div-hdr"><td colspan="11">Welterweight</td></tr><tr>
-          <td class="fighter-td" style="font-weight:600">Leon Edwards</td>
-          <td style="color:var(--text-dim);font-size:11px">Welterweight</td>
-          <td style="color:var(--loss)">1</td>
-          <td style="color:var(--win)">0</td>
-          <td style="color:var(--loss);font-weight:700">100%</td>
-          <td>46/89</td>
-          <td style="color:var(--loss)">52%</td>
-          <td>80/149</td>
-          <td>—</td>
-          <td>6:08</td>
-          <td>3.0</td>
-        </tr><tr class="div-hdr"><td colspan="11">Lightweight</td></tr><tr>
-          <td class="fighter-td" style="font-weight:600">Dan Hooker</td>
-          <td style="color:var(--text-dim);font-size:11px">Lightweight</td>
-          <td style="color:var(--loss)">0</td>
-          <td style="color:var(--win)">1</td>
-          <td style="color:var(--win);font-weight:700">0%</td>
-          <td>36/113</td>
-          <td style="color:var(--loss)">32%</td>
-          <td>75/197</td>
-          <td>—</td>
-          <td>5:01</td>
-          <td>1.0</td>
-        </tr><tr class="div-hdr"><td colspan="11">Featherweight</td></tr><tr>
-          <td class="fighter-td" style="font-weight:600">Max Holloway</td>
-          <td style="color:var(--text-dim);font-size:11px">Featherweight</td>
-          <td style="color:var(--loss)">1</td>
-          <td style="color:var(--win)">1</td>
-          <td style="color:var(--loss);font-weight:700">50%</td>
-          <td>42/142</td>
-          <td style="color:var(--loss)">30%</td>
-          <td>75/214</td>
-          <td>—</td>
-          <td>5:03</td>
-          <td>0.5</td>
-        </tr><tr>
-          <td class="fighter-td" style="font-weight:600">Zabit Magomedsharipov</td>
-          <td style="color:var(--text-dim);font-size:11px">Featherweight</td>
-          <td style="color:var(--loss)">0</td>
-          <td style="color:var(--win)">1</td>
-          <td style="color:var(--win);font-weight:700">0%</td>
-          <td>27/69</td>
-          <td style="color:var(--loss)">39%</td>
-          <td>—</td>
-          <td>—</td>
-          <td>5:52</td>
-          <td>0.0</td>
-        </tr><tr>
-          <td class="fighter-td" style="font-weight:600">Alexander Volkanovski</td>
-          <td style="color:var(--text-dim);font-size:11px">Featherweight</td>
-          <td style="color:var(--loss)">1</td>
-          <td style="color:var(--win)">0</td>
-          <td style="color:var(--loss);font-weight:700">100%</td>
-          <td>13/23</td>
-          <td style="color:var(--loss)">57%</td>
-          <td>29/46</td>
-          <td>—</td>
-          <td>5:00</td>
-          <td>1.0</td>
-        </tr><tr>
-          <td class="fighter-td" style="font-weight:600">Jean Silva</td>
-          <td style="color:var(--text-dim);font-size:11px">Featherweight</td>
-          <td style="color:var(--loss)">1</td>
-          <td style="color:var(--win)">0</td>
-          <td style="color:var(--loss);font-weight:700">100%</td>
-          <td>44/76</td>
-          <td style="color:var(--loss)">58%</td>
-          <td>73/128</td>
-          <td>—</td>
-          <td>5:37</td>
-          <td>2.0</td>
-        </tr><tr>
-          <td class="fighter-td" style="font-weight:600">Yair Rodríguez</td>
-          <td style="color:var(--text-dim);font-size:11px">Featherweight</td>
-          <td style="color:var(--loss)">1</td>
-          <td style="color:var(--win)">0</td>
-          <td style="color:var(--loss);font-weight:700">100%</td>
-          <td>35/93</td>
-          <td style="color:var(--loss)">38%</td>
-          <td>63/108</td>
-          <td>—</td>
-          <td>5:20</td>
-          <td>2.0</td>
-        </tr></tbody></table>
+        <th>Opponent</th><th>Vs You W</th><th>Vs You L</th><th>Win%</th>
+        <th>Sig L/A</th><th>Sig%</th><th>Tot L/A</th>
+        <th>TD L/A</th><th>Ctrl/f</th><th>KD/f</th>
+      </tr></thead><tbody id="o-body"></tbody></table>
     </div>
   </div>
 
-  <!-- FIGHT LOG -->
   <div class="tab" id="tab-log">
-    <div class="sec-hdr"><span class="sec-title">Fight Log</span><span class="sec-sub">Full stats per fight</span></div>
-    <div class="filter-bar" id="l-filters"><button class="fb active" data-d="All">All</button><button class="fb " data-d="Light Heavyweight">Light Heavyweight</button><button class="fb " data-d="Middleweight">Middleweight</button><button class="fb " data-d="Welterweight">Welterweight</button><button class="fb " data-d="Lightweight">Lightweight</button><button class="fb " data-d="Featherweight">Featherweight</button></div>
+    <div class="sec-hdr"><span class="sec-title">Fight Log</span></div>
+    <div class="filter-bar" id="l-filters"></div>
     <div class="tbl-wrap">
       <table><thead><tr>
-        <th>#</th><th>My Fighter</th><th>Opponent</th><th>Div</th><th>Result</th><th>Method</th><th>Rd</th><th>Time</th>
-        <th>My Sig</th><th>Sig%</th><th>My Tot</th><th>My TD</th><th>My Ctrl</th><th>My KD</th>
-        <th>Opp Sig</th><th>Opp Sig%</th><th>Opp Tot</th><th>Opp TD</th><th>Opp Ctrl</th><th>Opp KD</th>
-      </tr></thead><tbody id="l-body"><tr>
-        <td style="color:var(--text-faint)">141</td>
-        <td style="font-weight:600">Kamaru Usman</td>
-        <td>Darren Till</td>
-        <td style="color:var(--text-dim);font-size:11px">Middleweight</td>
-        <td><span class="pill pill-win">WIN</span></td>
-        <td><span class="pill pill-ko">KO</span> <span style="color:var(--text-dim);font-size:11px">TKO</span></td>
-        <td style="text-align:center">1</td>
-        <td style="color:var(--text-faint)">1899-12-30T09:57:00.000Z</td>
-        <td>20/39</td>
-        <td style="color:var(--cyan)">0.512</td>
-        <td>—</td>
-        <td>2026-03-04T05:00:00.000Z</td>
-        <td>1899-12-30T06:18:00.000Z</td>
-        <td>1</td>
-        <td>28/43</td>
-        <td style="color:var(--loss)">0.651</td>
-        <td>—</td>
-        <td>0/0</td>
-        <td>1899-12-30T05:00:00.000Z</td>
-        <td>0</td>
-      </tr><tr>
-        <td style="color:var(--text-faint)">142</td>
-        <td style="font-weight:600">Aljamain Sterling</td>
-        <td>Zabit Magomedsharipov</td>
-        <td style="color:var(--text-dim);font-size:11px">Featherweight</td>
-        <td><span class="pill pill-win">WIN</span></td>
-        <td><span class="pill pill-ko">KO</span> <span style="color:var(--text-dim);font-size:11px">KO</span></td>
-        <td style="text-align:center">2</td>
-        <td style="color:var(--text-faint)">1899-12-30T08:20:00.000Z</td>
-        <td>33/62</td>
-        <td style="color:var(--cyan)">0.532</td>
-        <td>—</td>
-        <td>2026-05-12T04:00:00.000Z</td>
-        <td>1899-12-30T06:59:00.000Z</td>
-        <td>0</td>
-        <td>27/69</td>
-        <td style="color:var(--loss)">0.391</td>
-        <td>—</td>
-        <td>0/0</td>
-        <td>1899-12-30T05:52:00.000Z</td>
-        <td>0</td>
-      </tr><tr>
-        <td style="color:var(--text-faint)">143</td>
-        <td style="font-weight:600">Conor McGregor</td>
-        <td>Max Holloway</td>
-        <td style="color:var(--text-dim);font-size:11px">Featherweight</td>
-        <td><span class="pill pill-loss">LOSS</span></td>
-        <td><span class="pill pill-ko">KO</span> <span style="color:var(--text-dim);font-size:11px">KO</span></td>
-        <td style="text-align:center">1</td>
-        <td style="color:var(--text-faint)">1899-12-30T07:19:00.000Z</td>
-        <td>2026-08-18T04:00:00.000Z</td>
-        <td style="color:var(--cyan)">0.44</td>
-        <td>—</td>
-        <td>0/0</td>
-        <td>1899-12-30T05:00:00.000Z</td>
-        <td>0</td>
-        <td>21/39</td>
-        <td style="color:var(--loss)">0.54</td>
-        <td>28/60</td>
-        <td>0/0</td>
-        <td>1899-12-30T05:03:00.000Z</td>
-        <td>1</td>
-      </tr><tr>
-        <td style="color:var(--text-faint)">144</td>
-        <td style="font-weight:600">Aljamain Sterling</td>
-        <td>Alexander Volkanovski</td>
-        <td style="color:var(--text-dim);font-size:11px">Featherweight</td>
-        <td><span class="pill pill-loss">LOSS</span></td>
-        <td><span class="pill pill-ko">KO</span> <span style="color:var(--text-dim);font-size:11px">KO</span></td>
-        <td style="text-align:center">1</td>
-        <td style="color:var(--text-faint)">1899-12-30T06:44:00.000Z</td>
-        <td>13/28</td>
-        <td style="color:var(--cyan)">0.46</td>
-        <td>—</td>
-        <td>0/1</td>
-        <td>1899-12-30T05:00:00.000Z</td>
-        <td>1</td>
-        <td>13/23</td>
-        <td style="color:var(--loss)">0.57</td>
-        <td>29/46</td>
-        <td>0/0</td>
-        <td>1899-12-30T05:00:00.000Z</td>
-        <td>1</td>
-      </tr><tr>
-        <td style="color:var(--text-faint)">145</td>
-        <td style="font-weight:600">José Aldo</td>
-        <td>Jean Silva</td>
-        <td style="color:var(--text-dim);font-size:11px">Featherweight</td>
-        <td><span class="pill pill-loss">LOSS</span></td>
-        <td><span class="pill pill-ko">KO</span> <span style="color:var(--text-dim);font-size:11px">KO (Flying Knee)</span></td>
-        <td style="text-align:center">2</td>
-        <td style="color:var(--text-faint)">1899-12-30T07:48:00.000Z</td>
-        <td>37/66</td>
-        <td style="color:var(--cyan)">0.56</td>
-        <td>—</td>
-        <td>2026-02-07T05:00:00.000Z</td>
-        <td>1899-12-30T05:15:00.000Z</td>
-        <td>0</td>
-        <td>44/76</td>
-        <td style="color:var(--loss)">0.58</td>
-        <td>73/128</td>
-        <td>0/0</td>
-        <td>1899-12-30T05:37:00.000Z</td>
-        <td>2</td>
-      </tr><tr>
-        <td style="color:var(--text-faint)">146</td>
-        <td style="font-weight:600">Aljamain Sterling</td>
-        <td>Yair Rodríguez</td>
-        <td style="color:var(--text-dim);font-size:11px">Featherweight</td>
-        <td><span class="pill pill-loss">LOSS</span></td>
-        <td><span class="pill pill-ko">KO</span> <span style="color:var(--text-dim);font-size:11px">KO (Superman Punch)</span></td>
-        <td style="text-align:center">2</td>
-        <td style="color:var(--text-faint)">1899-12-30T07:25:00.000Z</td>
-        <td>26/58</td>
-        <td style="color:var(--cyan)">0.45</td>
-        <td>—</td>
-        <td>2026-01-05T05:00:00.000Z</td>
-        <td>1899-12-30T06:28:00.000Z</td>
-        <td>2</td>
-        <td>35/93</td>
-        <td style="color:var(--loss)">0.38</td>
-        <td>63/108</td>
-        <td>0/0</td>
-        <td>1899-12-30T05:20:00.000Z</td>
-        <td>2</td>
-      </tr><tr>
-        <td style="color:var(--text-faint)">147</td>
-        <td style="font-weight:600">Conor McGregor</td>
-        <td>Max Holloway</td>
-        <td style="color:var(--text-dim);font-size:11px">Featherweight</td>
-        <td><span class="pill pill-win">WIN</span></td>
-        <td><span class="pill pill-ko">KO</span> <span style="color:var(--text-dim);font-size:11px">KO (Spinning Heel Kick)</span></td>
-        <td style="text-align:center">2</td>
-        <td style="color:var(--text-faint)">1899-12-30T09:13:00.000Z</td>
-        <td>59/99</td>
-        <td style="color:var(--cyan)">0.6</td>
-        <td>—</td>
-        <td>0/1</td>
-        <td>1899-12-30T05:00:00.000Z</td>
-        <td>4</td>
-        <td>21/103</td>
-        <td style="color:var(--loss)">0.2</td>
-        <td>47/154</td>
-        <td>0/0</td>
-        <td>1899-12-30T05:02:00.000Z</td>
-        <td>0</td>
-      </tr><tr>
-        <td style="color:var(--text-faint)">148</td>
-        <td style="font-weight:600">Jacaré Souza</td>
-        <td>Chael Sonnen</td>
-        <td style="color:var(--text-dim);font-size:11px">Middleweight</td>
-        <td><span class="pill pill-loss">LOSS</span></td>
-        <td><span class="pill pill-ko">KO</span> <span style="color:var(--text-dim);font-size:11px">TKO (Ground and Pound)</span></td>
-        <td style="text-align:center">3</td>
-        <td style="color:var(--text-faint)">1899-12-30T09:41:00.000Z</td>
-        <td>19/39</td>
-        <td style="color:var(--cyan)">0.49</td>
-        <td>—</td>
-        <td>2026-01-01T05:00:00.000Z</td>
-        <td>1899-12-30T07:58:00.000Z</td>
-        <td>0</td>
-        <td>38/73</td>
-        <td style="color:var(--loss)">0.52</td>
-        <td>95/156</td>
-        <td>2026-03-07T05:00:00.000Z</td>
-        <td>1899-12-30T13:33:00.000Z</td>
-        <td>1</td>
-      </tr><tr>
-        <td style="color:var(--text-faint)">149</td>
-        <td style="font-weight:600">Ian Machado Garry</td>
-        <td>Leon Edwards</td>
-        <td style="color:var(--text-dim);font-size:11px">Welterweight</td>
-        <td><span class="pill pill-loss">LOSS</span></td>
-        <td><span class="pill pill-ko">KO</span> <span style="color:var(--text-dim);font-size:11px">KO</span></td>
-        <td style="text-align:center">2</td>
-        <td style="color:var(--text-faint)">1899-12-30T09:31:00.000Z</td>
-        <td>27/105</td>
-        <td style="color:var(--cyan)">0.26</td>
-        <td>—</td>
-        <td>0/0</td>
-        <td>1899-12-30T05:08:00.000Z</td>
-        <td>1</td>
-        <td>46/89</td>
-        <td style="color:var(--loss)">0.52</td>
-        <td>80/149</td>
-        <td>2026-03-05T05:00:00.000Z</td>
-        <td>1899-12-30T06:08:00.000Z</td>
-        <td>3</td>
-      </tr><tr>
-        <td style="color:var(--text-faint)">150</td>
-        <td style="font-weight:600">Daniel Cormier</td>
-        <td>Alex Pereira</td>
-        <td style="color:var(--text-dim);font-size:11px">Light Heavyweight</td>
-        <td><span class="pill pill-win">WIN</span></td>
-        <td><span class="pill pill-ko">KO</span> <span style="color:var(--text-dim);font-size:11px">Opponent Quit</span></td>
-        <td style="text-align:center">1</td>
-        <td style="color:var(--text-faint)">1899-12-30T06:37:00.000Z</td>
-        <td>2026-03-17T04:00:00.000Z</td>
-        <td style="color:var(--cyan)">0.18</td>
-        <td>—</td>
-        <td>2026-03-07T05:00:00.000Z</td>
-        <td>1899-12-30T06:12:00.000Z</td>
-        <td>0</td>
-        <td>2026-11-24T05:00:00.000Z</td>
-        <td style="color:var(--loss)">0.46</td>
-        <td>2026-12-26T05:00:00.000Z</td>
-        <td>0/0</td>
-        <td>1899-12-30T05:32:00.000Z</td>
-        <td>0</td>
-      </tr><tr>
-        <td style="color:var(--text-faint)">151</td>
-        <td style="font-weight:600">Reinier de Ridder</td>
-        <td>Alex Pereira</td>
-        <td style="color:var(--text-dim);font-size:11px">Middleweight</td>
-        <td><span class="pill pill-loss">LOSS</span></td>
-        <td><span class="pill pill-ko">KO</span> <span style="color:var(--text-dim);font-size:11px">KO (Front Kick)</span></td>
-        <td style="text-align:center">1</td>
-        <td style="color:var(--text-faint)">1899-12-30T07:21:00.000Z</td>
-        <td>2026-07-14T04:00:00.000Z</td>
-        <td style="color:var(--cyan)">0.5</td>
-        <td>—</td>
-        <td>0/4</td>
-        <td>1899-12-30T05:03:00.000Z</td>
-        <td>0</td>
-        <td>16/43</td>
-        <td style="color:var(--loss)">0.37</td>
-        <td>23/62</td>
-        <td>0/0</td>
-        <td>1899-12-30T05:02:00.000Z</td>
-        <td>3</td>
-      </tr><tr>
-        <td style="color:var(--text-faint)">152</td>
-        <td style="font-weight:600">Israel Adesanya</td>
-        <td>Robbie Lawler</td>
-        <td style="color:var(--text-dim);font-size:11px">Middleweight</td>
-        <td><span class="pill pill-win">WIN</span></td>
-        <td><span class="pill pill-ko">KO</span> <span style="color:var(--text-dim);font-size:11px">KO (Front Kick)</span></td>
-        <td style="text-align:center">1</td>
-        <td style="color:var(--text-faint)">1899-12-30T05:43:00.000Z</td>
-        <td>30/32</td>
-        <td style="color:var(--cyan)">0.94</td>
-        <td>—</td>
-        <td>0/0</td>
-        <td>1899-12-30T05:02:00.000Z</td>
-        <td>2</td>
-        <td>13/48</td>
-        <td style="color:var(--loss)">0.27</td>
-        <td>18/66</td>
-        <td>0/1</td>
-        <td>1899-12-30T05:05:00.000Z</td>
-        <td>0</td>
-      </tr><tr>
-        <td style="color:var(--text-faint)">153</td>
-        <td style="font-weight:600">Anthony Johnson</td>
-        <td>Carlos Ulberg</td>
-        <td style="color:var(--text-dim);font-size:11px">Light Heavyweight</td>
-        <td><span class="pill pill-loss">LOSS</span></td>
-        <td><span class="pill pill-ko">KO</span> <span style="color:var(--text-dim);font-size:11px">KO</span></td>
-        <td style="text-align:center">2</td>
-        <td style="color:var(--text-faint)">1899-12-30T06:38:00.000Z</td>
-        <td>23/47</td>
-        <td style="color:var(--cyan)">0.49</td>
-        <td>—</td>
-        <td>2/0</td>
-        <td>1899-12-30T05:28:00.000Z</td>
-        <td>2</td>
-        <td>36/66</td>
-        <td style="color:var(--loss)">0.55</td>
-        <td>55/105</td>
-        <td>0/4</td>
-        <td>1899-12-30T06:07:00.000Z</td>
-        <td>5</td>
-      </tr><tr>
-        <td style="color:var(--text-faint)">154</td>
-        <td style="font-weight:600">Benoît Saint Denis</td>
-        <td>Dan Hooker</td>
-        <td style="color:var(--text-dim);font-size:11px">Lightweight</td>
-        <td><span class="pill pill-win">WIN</span></td>
-        <td><span class="pill pill-ko">KO</span> <span style="color:var(--text-dim);font-size:11px">KO</span></td>
-        <td style="text-align:center">2</td>
-        <td style="color:var(--text-faint)">1899-12-30T09:27:00.000Z</td>
-        <td>46/81</td>
-        <td style="color:var(--cyan)">0.57</td>
-        <td>—</td>
-        <td>2026-02-06T05:00:00.000Z</td>
-        <td>1899-12-30T05:50:00.000Z</td>
-        <td>1</td>
-        <td>36/113</td>
-        <td style="color:var(--loss)">0.32</td>
-        <td>75/197</td>
-        <td>0/0</td>
-        <td>1899-12-30T05:01:00.000Z</td>
-        <td>1</td>
-      </tr></tbody></table>
+        <th>#</th><th>My Fighter</th><th>Opponent</th><th>Div</th>
+        <th>Result</th><th>Method</th><th>Rd</th><th>Time</th>
+        <th>My Sig</th><th>Sig%</th><th>My Tot</th>
+        <th>My TD</th><th>My Ctrl</th><th>My KD</th>
+        <th>Opp Sig</th><th>OSig%</th><th>Opp Tot</th>
+        <th>Opp TD</th><th>Opp Ctrl</th><th>Opp KD</th>
+      </tr></thead><tbody id="l-body"></tbody></table>
     </div>
   </div>
 
-  <!-- ADVANCED STATS -->
   <div class="tab" id="tab-advanced">
     <div class="sec-hdr"><span class="sec-title">Advanced Stats</span><span class="sec-sub">Totals + per-fight averages</span></div>
-    <div class="g g-2" style="margin-bottom:20px">
+    <div class="g g-2" style="margin-bottom:16px">
       <div>
         <div class="sec-hdr"><span class="sec-title" style="color:var(--win)">Your Output</span></div>
-        <div class="card" id="adv-my"><div class="card-label" style="margin-bottom:14px;color:var(--win)">Your Totals &amp; Averages</div><div class="adv-row">
-      <div class="adv-label">Sig Strikes Landed</div>
-      <div class="adv-vals">
-        <div class="adv-total" style="color:var(--win)">333</div>
-        <div class="adv-avg">23.8 / fight</div>
-      </div>
-    </div><div class="adv-row">
-      <div class="adv-label">Sig Strike Accuracy</div>
-      <div class="adv-vals">
-        <div class="adv-total" style="color:var(--cyan)">51%</div>
-        <div class="adv-avg">53.3% / fight</div>
-      </div>
-    </div><div class="adv-row">
-      <div class="adv-label">Total Strikes Landed</div>
-      <div class="adv-vals">
-        <div class="adv-total" style="color:var(--text)">0</div>
-        <div class="adv-avg">0.0 / fight</div>
-      </div>
-    </div><div class="adv-row">
-      <div class="adv-label">Takedowns Landed</div>
-      <div class="adv-vals">
-        <div class="adv-total" style="color:var(--cyan)">2/6</div>
-        <div class="adv-avg">0.1 / fight / fight</div>
-      </div>
-    </div><div class="adv-row">
-      <div class="adv-label">Control Time (total)</div>
-      <div class="adv-vals">
-        <div class="adv-total" style="color:var(--text)">80:41</div>
-        <div class="adv-avg">5:46 / fight</div>
-      </div>
-    </div><div class="adv-row">
-      <div class="adv-label">Knockdowns</div>
-      <div class="adv-vals">
-        <div class="adv-total" style="color:var(--win)">14</div>
-        <div class="adv-avg">1.00 / fight</div>
-      </div>
-    </div></div>
+        <div class="card" id="adv-my"></div>
       </div>
       <div>
         <div class="sec-hdr"><span class="sec-title" style="color:var(--loss)">Opponent Output vs You</span></div>
-        <div class="card" id="adv-opp"><div class="card-label" style="margin-bottom:14px;color:var(--loss)">Opponent Totals &amp; Averages vs You</div><div class="adv-row">
-      <div class="adv-label">Sig Strikes Landed</div>
-      <div class="adv-vals">
-        <div class="adv-total" style="color:var(--loss)">374</div>
-        <div class="adv-avg">26.7 / fight</div>
-      </div>
-    </div><div class="adv-row">
-      <div class="adv-label">Sig Strike Accuracy</div>
-      <div class="adv-vals">
-        <div class="adv-total" style="color:var(--loss)">43%</div>
-        <div class="adv-avg">45.1% / fight</div>
-      </div>
-    </div><div class="adv-row">
-      <div class="adv-label">Total Strikes Landed</div>
-      <div class="adv-vals">
-        <div class="adv-total" style="color:var(--text)">586</div>
-        <div class="adv-avg">41.9 / fight</div>
-      </div>
-    </div><div class="adv-row">
-      <div class="adv-label">Takedowns Landed</div>
-      <div class="adv-vals">
-        <div class="adv-total" style="color:var(--text)">0/5</div>
-        <div class="adv-avg">0.0 / fight / fight</div>
-      </div>
-    </div><div class="adv-row">
-      <div class="adv-label">Control Time (total)</div>
-      <div class="adv-vals">
-        <div class="adv-total" style="color:var(--text)">83:22</div>
-        <div class="adv-avg">5:57 / fight</div>
-      </div>
-    </div><div class="adv-row">
-      <div class="adv-label">Knockdowns</div>
-      <div class="adv-vals">
-        <div class="adv-total" style="color:var(--loss)">19</div>
-        <div class="adv-avg">1.36 / fight</div>
-      </div>
-    </div></div>
+        <div class="card" id="adv-opp"></div>
       </div>
     </div>
-    <div class="sec-hdr"><span class="sec-title">Efficiency Comparison</span></div>
-    <div class="g g-3" id="adv-efficiency"><div class="card">
-    <div class="card-label" style="margin-bottom:16px">Sig Strike Acc.</div>
-    <div style="display:flex;gap:20px;align-items:flex-end">
-      <div>
-        <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--win);margin-bottom:4px">YOU</div>
-        <div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:36px;font-weight:700;color:var(--win)">51%</div>
-      </div>
-      <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--text-faint);padding-bottom:10px">vs</div>
-      <div>
-        <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--loss);margin-bottom:4px">OPP</div>
-        <div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:36px;font-weight:700;color:var(--text)">43%</div>
-      </div>
-    </div>
-  </div><div class="card">
-    <div class="card-label" style="margin-bottom:16px">Total Strike Acc.</div>
-    <div style="display:flex;gap:20px;align-items:flex-end">
-      <div>
-        <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--win);margin-bottom:4px">YOU</div>
-        <div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:36px;font-weight:700;color:var(--text)">0%</div>
-      </div>
-      <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--text-faint);padding-bottom:10px">vs</div>
-      <div>
-        <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--loss);margin-bottom:4px">OPP</div>
-        <div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:36px;font-weight:700;color:var(--loss)">48%</div>
-      </div>
-    </div>
-  </div><div class="card">
-    <div class="card-label" style="margin-bottom:16px">TD Success Rate</div>
-    <div style="display:flex;gap:20px;align-items:flex-end">
-      <div>
-        <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--win);margin-bottom:4px">YOU</div>
-        <div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:36px;font-weight:700;color:var(--win)">33%</div>
-      </div>
-      <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--text-faint);padding-bottom:10px">vs</div>
-      <div>
-        <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--loss);margin-bottom:4px">OPP</div>
-        <div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:36px;font-weight:700;color:var(--text)">0%</div>
-      </div>
-    </div>
-  </div></div>
+    <div class="sec-hdr"><span class="sec-title">Efficiency Head-to-Head</span></div>
+    <div class="g g-3" id="adv-eff"></div>
     <div class="sec-hdr"><span class="sec-title">Round Breakdown</span></div>
-    <div class="g g-3" id="adv-rounds"><div class="card">
-    <div class="card-label" style="margin-bottom:12px">Round 1</div>
-    <div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:48px;font-weight:700;line-height:1">6</div>
-    <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:10px;color:var(--text-dim);margin-top:6px">fights ended</div>
-    <div style="margin-top:12px;display:flex;gap:16px">
-      <div><div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--win)">WINS</div><div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:24px;font-weight:700;color:var(--win)">3</div></div>
-      <div><div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--loss)">LOSSES</div><div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:24px;font-weight:700;color:var(--loss)">3</div></div>
-      <div><div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--text-faint)">WIN%</div><div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:24px;font-weight:700">50%</div></div>
-    </div>
-  </div><div class="card">
-    <div class="card-label" style="margin-bottom:12px">Round 2</div>
-    <div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:48px;font-weight:700;line-height:1">7</div>
-    <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:10px;color:var(--text-dim);margin-top:6px">fights ended</div>
-    <div style="margin-top:12px;display:flex;gap:16px">
-      <div><div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--win)">WINS</div><div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:24px;font-weight:700;color:var(--win)">3</div></div>
-      <div><div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--loss)">LOSSES</div><div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:24px;font-weight:700;color:var(--loss)">4</div></div>
-      <div><div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--text-faint)">WIN%</div><div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:24px;font-weight:700">43%</div></div>
-    </div>
-  </div><div class="card">
-    <div class="card-label" style="margin-bottom:12px">Round 3</div>
-    <div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:48px;font-weight:700;line-height:1">1</div>
-    <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:10px;color:var(--text-dim);margin-top:6px">fights ended</div>
-    <div style="margin-top:12px;display:flex;gap:16px">
-      <div><div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--win)">WINS</div><div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:24px;font-weight:700;color:var(--win)">0</div></div>
-      <div><div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--loss)">LOSSES</div><div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:24px;font-weight:700;color:var(--loss)">1</div></div>
-      <div><div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;color:var(--text-faint)">WIN%</div><div style="font-family:&#39;Rajdhani&#39;,sans-serif;font-size:24px;font-weight:700">0%</div></div>
-    </div>
-  </div></div>
+    <div class="g g-3" id="adv-rounds"></div>
   </div>
 
-  <!-- INSIGHTS -->
   <div class="tab" id="tab-insights">
     <div class="sec-hdr"><span class="sec-title">Insights</span><span class="sec-sub">Min 3 fights to qualify</span></div>
-    <div id="insights-content">
-    <div class="g g-2" style="margin-bottom:16px">
-      <div class="insight-card"><div class="ic-title">🏆 My Best Fighters (min 3 fights)</div><div class="ranked-row">
-      <div class="rk-num top">1</div>
-      <div class="rk-info"><div class="rk-name">Aljamain Sterling</div><div class="rk-sub">Featherweight · 1–2 · 3 fights</div></div>
-      <div class="rk-val win">33%</div>
-    </div></div>
-      <div class="insight-card"><div class="ic-title">⚠️ My Worst Fighters (min 3 fights)</div><div class="ranked-row">
-      <div class="rk-num ">1</div>
-      <div class="rk-info"><div class="rk-name">Aljamain Sterling</div><div class="rk-sub">Featherweight · 1–2 · 3 fights</div></div>
-      <div class="rk-val loss">33%</div>
-    </div></div>
-    </div>
-    <div class="g g-2" style="margin-bottom:16px">
-      <div class="insight-card"><div class="ic-title">✅ Best Opponents — You Win Most (min 3)</div><div class="no-data">Not enough data (min 3 fights)</div></div>
-      <div class="insight-card"><div class="ic-title">🔴 Worst Opponents — They Beat You Most (min 3)</div><div class="no-data">Not enough data (min 3 fights)</div></div>
-    </div>
-    <div class="g g-2" style="margin-bottom:16px">
-      <div class="insight-card"><div class="ic-title">🎯 Best Striking Performances (Sig Str %)</div><div class="ranked-row">
-      <div class="rk-num top">1</div>
-      <div class="rk-info">
-        <div class="rk-name">Israel Adesanya vs Robbie Lawler</div>
-        <div class="rk-sub">#152 · Middleweight · W · KO (Front Kick)</div>
-      </div>
-      <div class="rk-val cyan">94%</div>
-    </div><div class="ranked-row">
-      <div class="rk-num ">2</div>
-      <div class="rk-info">
-        <div class="rk-name">Conor McGregor vs Max Holloway</div>
-        <div class="rk-sub">#147 · Featherweight · W · KO (Spinning Heel Kick)</div>
-      </div>
-      <div class="rk-val cyan">60%</div>
-    </div><div class="ranked-row">
-      <div class="rk-num ">3</div>
-      <div class="rk-info">
-        <div class="rk-name">Benoît Saint Denis vs Dan Hooker</div>
-        <div class="rk-sub">#154 · Lightweight · W · KO</div>
-      </div>
-      <div class="rk-val cyan">57%</div>
-    </div></div>
-      <div class="insight-card"><div class="ic-title">📉 Worst Striking Performances (Sig Str %)</div><div class="ranked-row">
-      <div class="rk-num ">1</div>
-      <div class="rk-info">
-        <div class="rk-name">Ian Machado Garry vs Leon Edwards</div>
-        <div class="rk-sub">#149 · Welterweight · L · KO</div>
-      </div>
-      <div class="rk-val loss">26%</div>
-    </div><div class="ranked-row">
-      <div class="rk-num ">2</div>
-      <div class="rk-info">
-        <div class="rk-name">Aljamain Sterling vs Yair Rodríguez</div>
-        <div class="rk-sub">#146 · Featherweight · L · KO (Superman Punch)</div>
-      </div>
-      <div class="rk-val loss">45%</div>
-    </div><div class="ranked-row">
-      <div class="rk-num ">3</div>
-      <div class="rk-info">
-        <div class="rk-name">Aljamain Sterling vs Alexander Volkanovski</div>
-        <div class="rk-sub">#144 · Featherweight · L · KO</div>
-      </div>
-      <div class="rk-val loss">46%</div>
-    </div></div>
-    </div>
-    <div class="g g-2">
-      <div class="insight-card">
-        <div class="ic-title">🔥 Biggest Win Streak</div>
-        <div class="streak-big" style="color:var(--win)">2</div>
-        <div class="streak-label">Fights #141–142</div>
-      </div>
-      <div class="insight-card">
-        <div class="ic-title">📉 Biggest Loss Streak</div>
-        <div class="streak-big" style="color:var(--loss)">4</div>
-        <div class="streak-label">Fights #143–146</div>
-      </div>
-    </div></div>
+    <div id="insights-content"></div>
   </div>
 
 </main>
 
 <script>
 // ============================================================
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbwKq8eoKCS1i0dU-8JLTctVoHGfZUbLmqxFzkfOXUGsvH_APXsM8fsLcqSYj5_7Bvky/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbwNZmIMqcyIRScEy6Xf6q1496URiLgVC0BDtS8g_ziKxVzYScXc6Cl5vKBCBOGP8d2d/exec";
 // ============================================================
 
-const MIN_FIGHTS = 3;
+const MIN_F = 3;
 const DIVS = ['Heavyweight','Light Heavyweight','Middleweight','Welterweight','Lightweight','Featherweight','Bantamweight','Flyweight',"Women's Flyweight","Women's Bantamweight","Women's Strawweight"];
 
-let allFights = [];
+let F = [];
 
 function nm(m){
   if(!m) return 'Dec';
-  const u = String(m).toUpperCase();
+  const u=String(m).toUpperCase();
   if(u==='OPPONENT QUIT'||u.startsWith('KO')||u.startsWith('TKO')) return 'KO';
   if(u.includes('SUBMISSION')) return 'Sub';
   return 'Dec';
 }
-function pct(a,b){return b===0?0:Math.round(a/b*100);}
-function avg(arr){return arr.length?arr.reduce((a,b)=>a+b,0)/arr.length:0;}
+function pct(a,b){return !b?0:Math.round(a/b*100);}
+function favg(arr){return arr.length?arr.reduce((a,b)=>a+b,0)/arr.length:0;}
 function fmt(n,d=1){return Number.isFinite(n)?n.toFixed(d):n;}
 
-function parseSigStr(s){
-  if(!s||s===''||s==='—') return null;
-  const m = String(s).match(/(\d+)\s*\/\s*(\d+)/);
+// Parse "20/39" → {l:20,a:39}
+function parseFrac(s){
+  if(!s||s===''||s==='—'||s==='-') return null;
+  const str=String(s).trim();
+  const m=str.match(/(\d+)\s*[\/]\s*(\d+)/);
   return m?{l:parseInt(m[1]),a:parseInt(m[2])}:null;
 }
-function parseCtrl(s){
-  if(!s||s===''||s==='—') return null;
-  const m = String(s).match(/(\d+):(\d+)/);
+// Parse "1:18" → seconds
+function parseSec(s){
+  if(!s||s===''||s==='—'||s==='-') return null;
+  const str=String(s).trim();
+  const m=str.match(/^(\d+):(\d+)/);
   return m?parseInt(m[1])*60+parseInt(m[2]):null;
 }
-function parseTD(s){
+function fmtSec(sec){
+  if(sec===null||!Number.isFinite(sec)||sec<0) return '—';
+  return Math.floor(sec/60)+':'+(Math.round(sec)%60).toString().padStart(2,'0');
+}
+// Parse percentage — handles "51%", "0.51", "51.2%"
+function parsePct(s){
   if(!s||s===''||s==='—') return null;
-  const m = String(s).match(/(\d+)\s*\/\s*(\d+)/);
-  return m?{l:parseInt(m[1]),a:parseInt(m[2])}:null;
+  const str=String(s).trim().replace('%','');
+  const n=parseFloat(str);
+  if(isNaN(n)) return null;
+  // if stored as decimal like 0.51, convert
+  return n>1?n:n*100;
 }
-function fmtCtrl(sec){
-  if(sec===null||!Number.isFinite(sec)) return '—';
-  return Math.floor(sec/60)+':'+(sec%60).toString().padStart(2,'0');
+function fmtPct(n){
+  if(n===null||!Number.isFinite(n)) return '—';
+  return Math.round(n)+'%';
 }
-
-function hasStats(f){
-  return f.mySigStr && f.mySigStr !== '' && f.mySigStr !== '—';
-}
+function hasStats(f){return f.mySigStr&&f.mySigStr!==''&&f.mySigStr!=='—'&&f.mySigStr!=='-';}
 
 async function loadData(){
   document.getElementById('loading').style.display='flex';
   document.getElementById('error').style.display='none';
   try{
-    const r = await fetch(SHEET_URL);
+    const r=await fetch(SHEET_URL);
     if(!r.ok) throw new Error('HTTP '+r.status);
-    const raw = await r.json();
-
-    allFights = raw.map(row=>{
-      const season = String(row['Season']||'').trim();
-      if(season !== 'Season 22') return null;
-      const n = parseInt(row['Fight#']||0);
-      if(n < 141) return null; // only fights with stats
+    const raw=await r.json();
+    F=raw.map(row=>{
+      const n=parseInt(row['Fight#']||0);
+      if(n<1) return null;
       return {
         n,
-        div:      String(row['Division']||'').trim(),
-        me:       String(row['My Fighter']||'').trim(),
-        opp:      String(row['Opponent']||'').trim(),
-        result:   String(row['Result']||'').trim(),
-        method:   String(row['Method']||'').trim(),
-        round:    parseInt(row['Round']||1),
-        notes:    String(row['Notes']||'').trim(),
-        season,
-        mySigStr:    String(row['My Sig Str (L/A)']||'').trim(),
-        mySigPct:    String(row['My Sig Str %']||'').trim(),
-        myTD:        String(row['My Takedowns (L/A)']||'').trim(),
-        myCtrl:      String(row['My Control Time']||'').trim(),
-        myKD:        parseInt(row['My Knockdowns']||0),
-        oppSigStr:   String(row['Opp Sig Str (L/A)']||'').trim(),
-        oppSigPct:   String(row['Opp Sig Str %']||'').trim(),
-        oppTD:       String(row['Opp Takedowns (L/A)']||'').trim(),
-        oppCtrl:     String(row['Opp Control Time']||'').trim(),
-        oppKD:       parseInt(row['Opp Knockdowns']||0),
-        time:        String(row['Finish Time']||'').trim(),
-        myTotStr:    String(row['My Total Strikes (L/A)']||'').trim(),
-        oppTotStr:   String(row['Opp Total Strikes (L/A)']||'').trim(),
-        mNorm:       nm(String(row['Method']||''))
+        div:    String(row['Division']||'').trim(),
+        me:     String(row['My Fighter']||'').trim(),
+        opp:    String(row['Opponent']||'').trim(),
+        result: String(row['Result']||'').trim(),
+        method: String(row['Method']||'').trim(),
+        round:  parseInt(row['Round']||1),
+        notes:  String(row['Notes']||'').trim(),
+        season: String(row['Season']||'').trim(),
+        mySigStr:  String(row['My Sig Str (L/A)']||'').trim(),
+        mySigPct:  String(row['My Sig Str %']||'').trim(),
+        myTD:      String(row['My Takedowns (L/A)']||'').trim(),
+        myCtrl:    String(row['My Control Time']||'').trim(),
+        myKD:      parseInt(row['My Knockdowns']||0)||0,
+        oppSigStr: String(row['Opp Sig Str (L/A)']||'').trim(),
+        oppSigPct: String(row['Opp Sig Str %']||'').trim(),
+        oppTD:     String(row['Opp Takedowns (L/A)']||'').trim(),
+        oppCtrl:   String(row['Opp Control Time']||'').trim(),
+        oppKD:     parseInt(row['Opp Knockdowns']||0)||0,
+        time:      String(row['Finish Time']||'').trim(),
+        myTotStr:  String(row['My Total Strikes (L/A)']||'').trim(),
+        oppTotStr: String(row['Opp Total Strikes (L/A)']||'').trim(),
+        mNorm:     nm(String(row['Method']||''))
       };
     }).filter(f=>f&&f.n>0&&f.me&&f.opp);
-
-    allFights.sort((a,b)=>a.n-b.n);
+    F.sort((a,b)=>a.n-b.n);
     build();
-    document.getElementById('last-upd').textContent = 'Updated '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+    document.getElementById('last-upd').textContent='Updated '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
     document.getElementById('loading').style.display='none';
   }catch(err){
     console.error(err);
     document.getElementById('loading').style.display='none';
     document.getElementById('error').style.display='flex';
-    document.getElementById('err-msg').textContent = 'Error: '+err.message+' · URL: '+SHEET_URL;
+    document.getElementById('err-msg').textContent='Error: '+err.message;
   }
 }
 
 function build(){
-  const f = allFights;
-  const w = f.filter(x=>x.result==='Win').length;
-  const l = f.filter(x=>x.result==='Loss').length;
+  const w=F.filter(f=>f.result==='Win').length;
+  const l=F.filter(f=>f.result==='Loss').length;
   document.getElementById('hdr-w').textContent=w;
   document.getElementById('hdr-l').textContent=l;
   document.getElementById('hdr-pct').textContent=pct(w,w+l)+'%';
-  buildOverview(f);
-  buildFighters(f);
-  buildOpponents(f);
-  buildLog(f);
-  buildAdvanced(f);
-  buildInsights(f);
+  buildOverview();
+  buildFighters();
+  buildOpponents();
+  buildLog();
+  buildAdvanced();
+  buildInsights();
 }
 
 // ── OVERVIEW ────────────────────────────────────────────────
-function buildOverview(f){
-  const w=f.filter(x=>x.result==='Win').length, l=f.filter(x=>x.result==='Loss').length, t=w+l;
+function buildOverview(){
+  const f=F;
+  const w=f.filter(x=>x.result==='Win').length,l=f.filter(x=>x.result==='Loss').length,t=w+l;
   const koW=f.filter(x=>x.result==='Win'&&x.mNorm==='KO').length;
   const subW=f.filter(x=>x.result==='Win'&&x.mNorm==='Sub').length;
   const decW=f.filter(x=>x.result==='Win'&&x.mNorm==='Dec').length;
@@ -1367,449 +403,455 @@ function buildOverview(f){
   document.getElementById('ov-bars').innerHTML=[
     {l:'Overall',w,l:l},
     {l:'By KO/TKO',w:koW,l:koL},
-    {l:'By Submission',w:subW,l:subL},
-    {l:'By Decision',w:decW,l:decL},
+    {l:'By Sub',w:subW,l:subL},
+    {l:'By Dec',w:decW,l:decL},
   ].map(row=>{
-    const tt=row.w+row.l, wp=tt?row.w/tt*100:0, lp=tt?row.l/tt*100:0;
+    const tt=row.w+row.l,wp=tt?row.w/tt*100:0,lp=tt?row.l/tt*100:0;
     return `<div class="stat-bar-row">
       <div class="sbl">${row.l}</div>
-      <div class="sb-track">
-        <div style="display:flex;height:100%">
-          <div class="sb-fill-w" style="width:${wp}%">${row.w||''}</div>
-          <div class="sb-fill-l" style="width:${lp}%">${row.l||''}</div>
-        </div>
-      </div>
-      <div class="sb-counts" style="color:${row.w>row.l?'var(--win)':'var(--loss)'}">${row.w}–${row.l}</div>
+      <div class="sb-track"><div class="sb-inner">
+        <div class="sb-w" style="width:${wp}%">${row.w||''}</div>
+        <div class="sb-l" style="width:${lp}%">${row.l||''}</div>
+      </div></div>
+      <div class="sb-counts" style="color:${row.w>=row.l?'var(--win)':'var(--loss)'}">${row.w}–${row.l}</div>
     </div>`;
   }).join('');
 
-  // Advanced avg cards
-  const ss = f.map(x=>parseSigStr(x.mySigStr)).filter(Boolean);
-  const ts = f.map(x=>parseSigStr(x.myTotStr)).filter(Boolean);
-  const td = f.map(x=>parseTD(x.myTD)).filter(Boolean);
-  const ct = f.map(x=>parseCtrl(x.myCtrl)).filter(Boolean);
-  const avgSigPct = ss.length?fmt(avg(ss.map(x=>pct(x.l,x.a||1))),1)+'%':'—';
-  const avgTot = ts.length?fmt(avg(ts.map(x=>x.l)),1):'—';
-  const avgTDL = td.length?fmt(avg(td.map(x=>x.l)),1):'—';
-  const avgCtrl = ct.length?fmtCtrl(Math.round(avg(ct))):'—';
+  // Avg cards — only from fights with stats
+  const fn=f.length||1;
+  const ss=f.map(x=>parseFrac(x.mySigStr)).filter(Boolean);
+  const ts=f.map(x=>parseFrac(x.myTotStr)).filter(Boolean);
+  const td=f.map(x=>parseFrac(x.myTD)).filter(Boolean);
+  const ct=f.map(x=>parseSec(x.myCtrl)).filter(x=>x!==null);
+  const avgSP=ss.length?Math.round(favg(ss.map(x=>pct(x.l,x.a||1))))+'%':'—';
+  const avgTL=ts.length?fmt(favg(ts.map(x=>x.l)),1):'—';
+  const avgTD=td.length?fmt(favg(td.map(x=>x.l)),1):'—';
+  const avgC=ct.length?fmtSec(Math.round(favg(ct))):'—';
 
-  document.getElementById('ov-adv-cards').innerHTML=[
-    {l:'Avg Sig Str %',v:avgSigPct,c:'cyan'},
-    {l:'Avg Total Str Landed',v:avgTot,c:''},
-    {l:'Avg TDs Landed',v:avgTDL,c:''},
-    {l:'Avg Control Time',v:avgCtrl,c:''},
-  ].map(x=>`<div class="card"><div class="card-label">${x.l}</div><div class="card-val sm ${x.c}">${x.v}</div><div class="card-sub">per fight avg</div></div>`).join('');
+  document.getElementById('ov-adv').innerHTML=[
+    {l:'Avg Sig Str %',v:avgSP,c:'cyan'},
+    {l:'Avg Total Str Landed',v:avgTL,c:''},
+    {l:'Avg TDs Landed',v:avgTD,c:''},
+    {l:'Avg Control Time',v:avgC,c:''},
+  ].map(x=>`<div class="card"><div class="card-label">${x.l}</div><div class="card-val sm ${x.c}">${x.v}</div><div class="card-sub">per fight</div></div>`).join('');
 
-  const mxW=Math.max(koW,subW,decW)||1, mxL=Math.max(koL,subL,decL)||1;
+  const mxW=Math.max(koW,subW,decW)||1,mxL=Math.max(koL,subL,decL)||1;
+  const mBar=(label,val,mx,color)=>`<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+    <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--text-dim);width:70px;flex-shrink:0">${label}</div>
+    <div style="flex:1;height:14px;background:var(--bg4);overflow:hidden"><div style="width:${val/mx*100}%;height:100%;background:${color}"></div></div>
+    <div style="font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;width:20px;text-align:right">${val}</div>
+  </div>`;
   document.getElementById('ov-methods').innerHTML=`
-    <div class="card">
-      <div class="card-label" style="margin-bottom:14px">Wins by Method</div>
-      ${methodBar('KO / TKO',koW,mxW,'var(--loss)')}
-      ${methodBar('Submission',subW,mxW,'var(--cyan)')}
-      ${methodBar('Decision',decW,mxW,'#ffc83c')}
+    <div class="card"><div class="card-label" style="margin-bottom:12px">Wins by Method</div>
+      ${mBar('KO/TKO',koW,mxW,'var(--loss)')}${mBar('Submission',subW,mxW,'var(--cyan)')}${mBar('Decision',decW,mxW,'#ffc83c')}
     </div>
-    <div class="card">
-      <div class="card-label" style="margin-bottom:14px">Losses by Method</div>
-      ${methodBar('KO / TKO',koL,mxL,'var(--loss)')}
-      ${methodBar('Submission',subL,mxL,'var(--cyan)')}
-      ${methodBar('Decision',decL,mxL,'#ffc83c')}
+    <div class="card"><div class="card-label" style="margin-bottom:12px">Losses by Method</div>
+      ${mBar('KO/TKO',koL,mxL,'var(--loss)')}${mBar('Submission',subL,mxL,'var(--cyan)')}${mBar('Decision',decL,mxL,'#ffc83c')}
     </div>`;
 }
 
-function methodBar(label,val,mx,color){
-  return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-    <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text-dim);width:80px;flex-shrink:0">${label}</div>
-    <div style="flex:1;height:16px;background:var(--bg4);overflow:hidden">
-      <div style="width:${val/mx*100}%;height:100%;background:${color}"></div>
-    </div>
-    <div style="font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;width:24px;text-align:right">${val}</div>
-  </div>`;
-}
-
-// ── FIGHTER STATS HELPER ─────────────────────────────────────
-function calcFighterStats(fights, field){
-  const map={};
+// ── FIGHTER STATS AGGREGATOR ─────────────────────────────────
+function aggStats(fights){
+  let w=0,l=0,mySL=0,mySA=0,myTL=0,myTA=0,myTDL=0,myTDA=0,myCS=0,myKD=0;
+  let oSL=0,oSA=0,oTL=0,oTA=0,oTDL=0,oTDA=0,oCS=0,oKD=0,fn=0;
   fights.forEach(f=>{
-    const key=f[field]+'|'+f.div;
-    if(!map[key]) map[key]={name:f[field],div:f.div,w:0,l:0,
-      mySigL:0,mySigA:0,myTotL:0,myTotA:0,myTDL:0,myTDA:0,myCtrlSec:0,myKD:0,
-      oppSigL:0,oppSigA:0,oppTotL:0,oppTotA:0,oppTDL:0,oppTDA:0,oppCtrlSec:0,oppKD:0,fights:0};
-    const s=map[key];
-    if(f.result==='Win') s.w++; else s.l++;
+    if(f.result==='Win') w++; else l++;
     if(hasStats(f)){
-      s.fights++;
-      const ms=parseSigStr(field==='me'?f.mySigStr:f.oppSigStr);
-      const mt=parseSigStr(field==='me'?f.myTotStr:f.oppTotStr);
-      const mtd=parseTD(field==='me'?f.myTD:f.oppTD);
-      const mc=parseCtrl(field==='me'?f.myCtrl:f.oppCtrl);
-      const os=parseSigStr(field==='me'?f.oppSigStr:f.mySigStr);
-      const ot=parseSigStr(field==='me'?f.oppTotStr:f.myTotStr);
-      const otd=parseTD(field==='me'?f.oppTD:f.myTD);
-      const oc=parseCtrl(field==='me'?f.oppCtrl:f.myCtrl);
-      if(ms){s.mySigL+=ms.l;s.mySigA+=ms.a;}
-      if(mt){s.myTotL+=mt.l;s.myTotA+=mt.a;}
-      if(mtd){s.myTDL+=mtd.l;s.myTDA+=mtd.a;}
-      if(mc!==null) s.myCtrlSec+=mc;
-      s.myKD+=isNaN(field==='me'?f.myKD:f.oppKD)?0:(field==='me'?f.myKD:f.oppKD);
-      if(os){s.oppSigL+=os.l;s.oppSigA+=os.a;}
-      if(ot){s.oppTotL+=ot.l;s.oppTotA+=ot.a;}
-      if(otd){s.oppTDL+=otd.l;s.oppTDA+=otd.a;}
-      if(oc!==null) s.oppCtrlSec+=oc;
-      s.oppKD+=isNaN(field==='me'?f.oppKD:f.myKD)?0:(field==='me'?f.oppKD:f.myKD);
+      fn++;
+      const ms=parseFrac(f.mySigStr),mt=parseFrac(f.myTotStr),mtd=parseFrac(f.myTD),mc=parseSec(f.myCtrl);
+      const os=parseFrac(f.oppSigStr),ot=parseFrac(f.oppTotStr),otd=parseFrac(f.oppTD),oc=parseSec(f.oppCtrl);
+      if(ms){mySL+=ms.l;mySA+=ms.a;}
+      if(mt){myTL+=mt.l;myTA+=mt.a;}
+      if(mtd){myTDL+=mtd.l;myTDA+=mtd.a;}
+      if(mc!==null) myCS+=mc;
+      myKD+=isNaN(f.myKD)?0:f.myKD;
+      if(os){oSL+=os.l;oSA+=os.a;}
+      if(ot){oTL+=ot.l;oTA+=ot.a;}
+      if(otd){oTDL+=otd.l;oTDA+=otd.a;}
+      if(oc!==null) oCS+=oc;
+      oKD+=isNaN(f.oppKD)?0:f.oppKD;
     }
   });
-  return Object.values(map);
+  const fn2=fn||1;
+  return {w,l,fn,
+    mySig:mySA?mySL+'/'+mySA:'—', mySigPct:mySA?pct(mySL,mySA)+'%':'—',
+    myTot:myTA?myTL+'/'+myTA:'—', myTD:myTDA?myTDL+'/'+myTDA:'—',
+    myCtrl:fn?fmtSec(Math.round(myCS/fn2)):'—', myKDavg:fn?fmt(myKD/fn2,1):'—',
+    oSig:oSA?oSL+'/'+oSA:'—', oSigPct:oSA?pct(oSL,oSA)+'%':'—',
+    oTot:oTA?oTL+'/'+oTA:'—', oTD:oTDA?oTDL+'/'+oTDA:'—',
+    oCtrl:fn?fmtSec(Math.round(oCS/fn2)):'—', oKDavg:fn?fmt(oKD/fn2,1):'—',
+  };
 }
 
-function renderFighterTable(stats, tbodyId, isOpp){
-  const divs = DIVS.filter(d=>stats.some(s=>s.div===d));
-  let html='';
-  divs.forEach(div=>{
-    const rows=stats.filter(s=>s.div===div).sort((a,b)=>(b.w+b.l)-(a.w+a.l));
-    if(!rows.length) return;
-    html+=`<tr class="div-hdr"><td colspan="17">${div}</td></tr>`;
-    rows.forEach(s=>{
-      const t=s.w+s.l, wp=pct(s.w,t);
-      const wc=wp>=50?'var(--win)':'var(--loss)';
-      const fn=s.fights||1;
-      html+=`<tr>
-        <td class="fighter-td" style="font-weight:600">${s.name}</td>
-        <td style="color:var(--text-dim);font-size:11px">${s.div}</td>
-        <td style="color:var(--win)">${s.w}</td>
-        <td style="color:var(--loss)">${s.l}</td>
-        <td style="color:${wc};font-weight:700">${wp}%</td>
-        <td>${s.mySigA?s.mySigL+'/'+s.mySigA:'—'}</td>
-        <td style="color:var(--cyan)">${s.mySigA?pct(s.mySigL,s.mySigA)+'%':'—'}</td>
-        <td>${s.myTotA?s.myTotL+'/'+s.myTotA:'—'}</td>
-        <td>${s.myTDA?s.myTDL+'/'+s.myTDA:'—'}</td>
-        <td>${s.fights?fmtCtrl(Math.round(s.myCtrlSec/fn)):'—'}</td>
-        <td>${s.fights?fmt(s.myKD/fn,1):'—'}</td>
-        ${!isOpp?`
-        <td>${s.oppSigA?s.oppSigL+'/'+s.oppSigA:'—'}</td>
-        <td style="color:var(--loss)">${s.oppSigA?pct(s.oppSigL,s.oppSigA)+'%':'—'}</td>
-        <td>${s.oppTotA?s.oppTotL+'/'+s.oppTotA:'—'}</td>
-        <td>${s.oppTDA?s.oppTDL+'/'+s.oppTDA:'—'}</td>
-        <td>${s.fights?fmtCtrl(Math.round(s.oppCtrlSec/fn)):'—'}</td>
-        <td>${s.fights?fmt(s.oppKD/fn,1):'—'}</td>`:''}
-      </tr>`;
-    });
-  });
-  document.getElementById(tbodyId).innerHTML=html||`<tr><td colspan="17" class="no-data">No data</td></tr>`;
+function fighterRow(name,ag,isFighter,isTotal){
+  const t=ag.w+ag.l,wp=pct(ag.w,t),wc=wp>=50?'var(--win)':'var(--loss)';
+  const tdClass=isTotal?'div-total':'fighter-row';
+  const nameCell=isTotal
+    ?`<td style="color:var(--cyan);font-size:10px">TOTAL</td>`
+    :`<td class="fighter-td" style="font-weight:600">${name}</td>`;
+  let html=`<tr class="${tdClass}">${nameCell}
+    <td style="color:var(--win)">${ag.w}</td>
+    <td style="color:var(--loss)">${ag.l}</td>
+    <td style="color:${wc};font-weight:700">${wp}%</td>
+    <td>${ag.mySig}</td>
+    <td style="color:var(--cyan)">${ag.mySigPct}</td>
+    <td>${ag.myTot}</td>
+    <td>${ag.myTD}</td>
+    <td>${ag.myCtrl}</td>
+    <td>${ag.myKDavg}</td>`;
+  if(isFighter){
+    html+=`<td>${ag.oSig}</td>
+    <td style="color:var(--loss)">${ag.oSigPct}</td>
+    <td>${ag.oTot}</td>
+    <td>${ag.oTD}</td>
+    <td>${ag.oCtrl}</td>
+    <td>${ag.oKDavg}</td>`;
+  }
+  html+=`</tr>`;
+  return html;
 }
 
 // ── MY FIGHTERS ──────────────────────────────────────────────
-function buildFighters(f){
-  const stats=calcFighterStats(f,'me');
-  const divs=DIVS.filter(d=>stats.some(s=>s.div===d));
+function buildFighters(){
+  const divs=DIVS.filter(d=>F.some(f=>f.div===d));
   const fb=document.getElementById('f-filters');
   let activeDiv='All';
   function render(){
     fb.innerHTML=`<button class="fb ${activeDiv==='All'?'active':''}" data-d="All">All</button>`
       +divs.map(d=>`<button class="fb ${activeDiv===d?'active':''}" data-d="${d}">${d}</button>`).join('');
-    fb.querySelectorAll('.fb').forEach(b=>b.onclick=()=>{activeDiv=b.dataset.d;render();renderFighterTable(activeDiv==='All'?stats:stats.filter(s=>s.div===activeDiv),'f-body',false);});
-    renderFighterTable(activeDiv==='All'?stats:stats.filter(s=>s.div===activeDiv),'f-body',false);
+    fb.querySelectorAll('.fb').forEach(b=>b.onclick=()=>{activeDiv=b.dataset.d;render();renderF();});
+    renderF();
+  }
+  function renderF(){
+    const data=activeDiv==='All'?F:F.filter(f=>f.div===activeDiv);
+    const divsToShow=DIVS.filter(d=>data.some(f=>f.div===d));
+    let html='';
+    divsToShow.forEach(div=>{
+      const divFights=data.filter(f=>f.div===div);
+      // Group by fighter
+      const fighters=[...new Set(divFights.map(f=>f.me))];
+      html+=`<tr class="div-hdr"><td colspan="16">${div}</td></tr>`;
+      fighters.sort((a,b)=>{
+        const af=divFights.filter(f=>f.me===a).length;
+        const bf=divFights.filter(f=>f.me===b).length;
+        return bf-af;
+      }).forEach(name=>{
+        const ff=divFights.filter(f=>f.me===name);
+        html+=fighterRow(name,aggStats(ff),true,false);
+      });
+      // Division total row
+      if(fighters.length>1){
+        html+=fighterRow('TOTAL',aggStats(divFights),true,true);
+      }
+    });
+    document.getElementById('f-body').innerHTML=html||`<tr><td colspan="16" class="no-data">No data</td></tr>`;
   }
   render();
 }
 
 // ── OPPONENTS ────────────────────────────────────────────────
-function buildOpponents(f){
-  // For opponents tab: their stats against you (opp is the opponent, so their sig str = f.oppSigStr)
-  const map={};
-  f.forEach(fight=>{
-    const key=fight.opp+'|'+fight.div;
-    if(!map[key]) map[key]={name:fight.opp,div:fight.div,w:0,l:0,sigL:0,sigA:0,totL:0,totA:0,tdL:0,tdA:0,ctrlSec:0,kd:0,fights:0};
-    const s=map[key];
-    // opponent wins when you lose
-    if(fight.result==='Loss') s.w++; else s.l++;
-    if(hasStats(fight)){
-      s.fights++;
-      const os=parseSigStr(fight.oppSigStr);
-      const ot=parseSigStr(fight.oppTotStr);
-      const otd=parseTD(fight.oppTD);
-      const oc=parseCtrl(fight.oppCtrl);
-      if(os){s.sigL+=os.l;s.sigA+=os.a;}
-      if(ot){s.totL+=ot.l;s.totA+=ot.a;}
-      if(otd){s.tdL+=otd.l;s.tdA+=otd.a;}
-      if(oc!==null) s.ctrlSec+=oc;
-      s.kd+=isNaN(fight.oppKD)?0:fight.oppKD;
-    }
-  });
-  const stats=Object.values(map);
-  const divs=DIVS.filter(d=>stats.some(s=>s.div===d));
+function buildOpponents(){
+  const divs=DIVS.filter(d=>F.some(f=>f.div===d));
   const fb=document.getElementById('o-filters');
   let activeDiv='All';
-  function renderOpp(data){
-    let html='';
-    DIVS.filter(d=>data.some(s=>s.div===d)).forEach(div=>{
-      const rows=data.filter(s=>s.div===div).sort((a,b)=>(b.w+b.l)-(a.w+a.l));
-      if(!rows.length) return;
-      html+=`<tr class="div-hdr"><td colspan="11">${div}</td></tr>`;
-      rows.forEach(s=>{
-        const t=s.w+s.l, wp=pct(s.w,t), fn=s.fights||1;
-        const wc=wp>=50?'var(--loss)':'var(--win)'; // high opp win% is bad for you
-        html+=`<tr>
-          <td class="fighter-td" style="font-weight:600">${s.name}</td>
-          <td style="color:var(--text-dim);font-size:11px">${s.div}</td>
-          <td style="color:var(--loss)">${s.w}</td>
-          <td style="color:var(--win)">${s.l}</td>
-          <td style="color:${wc};font-weight:700">${wp}%</td>
-          <td>${s.sigA?s.sigL+'/'+s.sigA:'—'}</td>
-          <td style="color:var(--loss)">${s.sigA?pct(s.sigL,s.sigA)+'%':'—'}</td>
-          <td>${s.totA?s.totL+'/'+s.totA:'—'}</td>
-          <td>${s.tdA?s.tdL+'/'+s.tdA:'—'}</td>
-          <td>${s.fights?fmtCtrl(Math.round(s.ctrlSec/fn)):'—'}</td>
-          <td>${s.fights?fmt(s.kd/fn,1):'—'}</td>
-        </tr>`;
-      });
-    });
-    document.getElementById('o-body').innerHTML=html||`<tr><td colspan="11" class="no-data">No data</td></tr>`;
-  }
   function render(){
     fb.innerHTML=`<button class="fb ${activeDiv==='All'?'active':''}" data-d="All">All</button>`
       +divs.map(d=>`<button class="fb ${activeDiv===d?'active':''}" data-d="${d}">${d}</button>`).join('');
-    fb.querySelectorAll('.fb').forEach(b=>b.onclick=()=>{activeDiv=b.dataset.d;render();renderOpp(activeDiv==='All'?stats:stats.filter(s=>s.div===activeDiv));});
-    renderOpp(activeDiv==='All'?stats:stats.filter(s=>s.div===activeDiv));
+    fb.querySelectorAll('.fb').forEach(b=>b.onclick=()=>{activeDiv=b.dataset.d;render();renderO();});
+    renderO();
+  }
+  function renderO(){
+    const data=activeDiv==='All'?F:F.filter(f=>f.div===activeDiv);
+    const divsToShow=DIVS.filter(d=>data.some(f=>f.div===d));
+    let html='';
+    divsToShow.forEach(div=>{
+      const divFights=data.filter(f=>f.div===div);
+      const opps=[...new Set(divFights.map(f=>f.opp))];
+      html+=`<tr class="div-hdr"><td colspan="10">${div}</td></tr>`;
+      opps.sort((a,b)=>{
+        return divFights.filter(f=>f.opp===b).length-divFights.filter(f=>f.opp===a).length;
+      }).forEach(name=>{
+        const ff=divFights.filter(f=>f.opp===name);
+        // For opponents: their wins = your losses, their sig str = oppSigStr
+        let ow=0,ol=0,sl=0,sa=0,tl=0,ta=0,tdl=0,tda=0,cs=0,kd=0,fn=0;
+        ff.forEach(f=>{
+          if(f.result==='Loss') ow++; else ol++;
+          if(hasStats(f)){
+            fn++;
+            const os=parseFrac(f.oppSigStr),ot=parseFrac(f.oppTotStr),otd=parseFrac(f.oppTD),oc=parseSec(f.oppCtrl);
+            if(os){sl+=os.l;sa+=os.a;}
+            if(ot){tl+=ot.l;ta+=ot.a;}
+            if(otd){tdl+=otd.l;tda+=otd.a;}
+            if(oc!==null) cs+=oc;
+            kd+=isNaN(f.oppKD)?0:f.oppKD;
+          }
+        });
+        const t=ow+ol,wp=pct(ow,t),fn2=fn||1;
+        const wc=wp>=50?'var(--loss)':'var(--win)';
+        html+=`<tr><td class="fighter-td" style="font-weight:600">${name}</td>
+          <td style="color:var(--loss)">${ow}</td>
+          <td style="color:var(--win)">${ol}</td>
+          <td style="color:${wc};font-weight:700">${wp}%</td>
+          <td>${sa?sl+'/'+sa:'—'}</td>
+          <td style="color:var(--loss)">${sa?pct(sl,sa)+'%':'—'}</td>
+          <td>${ta?tl+'/'+ta:'—'}</td>
+          <td>${tda?tdl+'/'+tda:'—'}</td>
+          <td>${fn?fmtSec(Math.round(cs/fn2)):'—'}</td>
+          <td>${fn?fmt(kd/fn2,1):'—'}</td>
+        </tr>`;
+      });
+      // Division total
+      if(opps.length>1){
+        let ow=0,ol=0,sl=0,sa=0,tl=0,ta=0,tdl=0,tda=0,cs=0,kd=0,fn=0;
+        divFights.forEach(f=>{
+          if(f.result==='Loss') ow++; else ol++;
+          if(hasStats(f)){
+            fn++;
+            const os=parseFrac(f.oppSigStr),ot=parseFrac(f.oppTotStr),otd=parseFrac(f.oppTD),oc=parseSec(f.oppCtrl);
+            if(os){sl+=os.l;sa+=os.a;}
+            if(ot){tl+=ot.l;ta+=ot.a;}
+            if(otd){tdl+=otd.l;tda+=otd.a;}
+            if(oc!==null) cs+=oc;
+            kd+=isNaN(f.oppKD)?0:f.oppKD;
+          }
+        });
+        const t=ow+ol,wp=pct(ow,t),fn2=fn||1,wc=wp>=50?'var(--loss)':'var(--win)';
+        html+=`<tr class="div-total">
+          <td>TOTAL</td>
+          <td style="color:var(--loss)">${ow}</td>
+          <td style="color:var(--win)">${ol}</td>
+          <td style="color:${wc};font-weight:700">${wp}%</td>
+          <td>${sa?sl+'/'+sa:'—'}</td>
+          <td style="color:var(--loss)">${sa?pct(sl,sa)+'%':'—'}</td>
+          <td>${ta?tl+'/'+ta:'—'}</td>
+          <td>${tda?tdl+'/'+tda:'—'}</td>
+          <td>${fn?fmtSec(Math.round(cs/fn2)):'—'}</td>
+          <td>${fn?fmt(kd/fn2,1):'—'}</td>
+        </tr>`;
+      }
+    });
+    document.getElementById('o-body').innerHTML=html||`<tr><td colspan="10" class="no-data">No data</td></tr>`;
   }
   render();
 }
 
 // ── FIGHT LOG ────────────────────────────────────────────────
-function buildLog(f){
-  const divs=DIVS.filter(d=>f.some(x=>x.div===d));
+function buildLog(){
+  const divs=DIVS.filter(d=>F.some(f=>f.div===d));
   const fb=document.getElementById('l-filters');
   let activeDiv='All';
-  function renderLog(data){
-    document.getElementById('l-body').innerHTML=data.map(x=>{
-      const rp=x.result==='Win'?`<span class="pill pill-win">WIN</span>`:`<span class="pill pill-loss">LOSS</span>`;
-      const mp=x.mNorm==='KO'?'pill-ko':x.mNorm==='Sub'?'pill-sub':'pill-dec';
-      return `<tr>
-        <td style="color:var(--text-faint)">${x.n}</td>
-        <td style="font-weight:600">${x.me}</td>
-        <td>${x.opp}</td>
-        <td style="color:var(--text-dim);font-size:11px">${x.div}</td>
-        <td>${rp}</td>
-        <td><span class="pill ${mp}">${x.mNorm}</span> <span style="color:var(--text-dim);font-size:11px">${x.method}</span></td>
-        <td style="text-align:center">${x.round}</td>
-        <td style="color:var(--text-faint)">${x.time||'—'}</td>
-        <td>${x.mySigStr||'—'}</td>
-        <td style="color:var(--cyan)">${x.mySigPct||'—'}</td>
-        <td>${x.myTotStr||'—'}</td>
-        <td>${x.myTD||'—'}</td>
-        <td>${x.myCtrl||'—'}</td>
-        <td>${isNaN(x.myKD)?'—':x.myKD}</td>
-        <td>${x.oppSigStr||'—'}</td>
-        <td style="color:var(--loss)">${x.oppSigPct||'—'}</td>
-        <td>${x.oppTotStr||'—'}</td>
-        <td>${x.oppTD||'—'}</td>
-        <td>${x.oppCtrl||'—'}</td>
-        <td>${isNaN(x.oppKD)?'—':x.oppKD}</td>
-      </tr>`;
-    }).join('')||`<tr><td colspan="20" class="no-data">No fights found</td></tr>`;
-  }
   function render(){
     fb.innerHTML=`<button class="fb ${activeDiv==='All'?'active':''}" data-d="All">All</button>`
-      +divs.map(d=>`<button class="fb ${activeDiv==='All'||activeDiv===d?'active':''}" style="${activeDiv!=='All'&&activeDiv!==d?'':''}"`+` data-d="${d}">${d}</button>`).join('');
-    fb.innerHTML=`<button class="fb ${activeDiv==='All'?'active':''}" data-d="All">All</button>`
       +divs.map(d=>`<button class="fb ${activeDiv===d?'active':''}" data-d="${d}">${d}</button>`).join('');
-    fb.querySelectorAll('.fb').forEach(b=>b.onclick=()=>{activeDiv=b.dataset.d;render();renderLog(activeDiv==='All'?f:f.filter(x=>x.div===activeDiv));});
-    renderLog(activeDiv==='All'?f:f.filter(x=>x.div===activeDiv));
+    fb.querySelectorAll('.fb').forEach(b=>b.onclick=()=>{activeDiv=b.dataset.d;render();renderL();});
+    renderL();
+  }
+  function renderL(){
+    const data=activeDiv==='All'?F:F.filter(f=>f.div===activeDiv);
+    document.getElementById('l-body').innerHTML=data.map(f=>{
+      const rp=f.result==='Win'?`<span class="pill pill-win">W</span>`:`<span class="pill pill-loss">L</span>`;
+      const mp=f.mNorm==='KO'?'pill-ko':f.mNorm==='Sub'?'pill-sub':'pill-dec';
+      // Parse and format sig str pct properly
+      const msp=parsePct(f.mySigPct),osp=parsePct(f.oppSigPct);
+      return `<tr>
+        <td style="color:var(--text-faint)">${f.n}</td>
+        <td style="font-weight:600;max-width:120px;overflow:hidden;text-overflow:ellipsis">${f.me}</td>
+        <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis">${f.opp}</td>
+        <td style="color:var(--text-dim);font-size:11px">${f.div}</td>
+        <td>${rp}</td>
+        <td><span class="pill ${mp}">${f.mNorm}</span></td>
+        <td style="text-align:center">${f.round}</td>
+        <td style="color:var(--text-faint)">${f.time||'—'}</td>
+        <td>${f.mySigStr||'—'}</td>
+        <td style="color:var(--cyan)">${fmtPct(msp)}</td>
+        <td>${f.myTotStr||'—'}</td>
+        <td>${f.myTD||'—'}</td>
+        <td>${f.myCtrl||'—'}</td>
+        <td>${isNaN(f.myKD)?'—':f.myKD}</td>
+        <td>${f.oppSigStr||'—'}</td>
+        <td style="color:var(--loss)">${fmtPct(osp)}</td>
+        <td>${f.oppTotStr||'—'}</td>
+        <td>${f.oppTD||'—'}</td>
+        <td>${f.oppCtrl||'—'}</td>
+        <td>${isNaN(f.oppKD)?'—':f.oppKD}</td>
+      </tr>`;
+    }).join('')||`<tr><td colspan="20" class="no-data">No fights found</td></tr>`;
   }
   render();
 }
 
-// ── ADVANCED STATS ───────────────────────────────────────────
-function buildAdvanced(f){
-  const fn = f.length||1;
-  const mySSL=f.map(x=>parseSigStr(x.mySigStr)).filter(Boolean);
-  const myTSL=f.map(x=>parseSigStr(x.myTotStr)).filter(Boolean);
-  const myTDL=f.map(x=>parseTD(x.myTD)).filter(Boolean);
-  const myCL=f.map(x=>parseCtrl(x.myCtrl)).filter(Boolean);
-  const myKDs=f.reduce((a,x)=>a+(isNaN(x.myKD)?0:x.myKD),0);
-  const oppSSL=f.map(x=>parseSigStr(x.oppSigStr)).filter(Boolean);
-  const oppTSL=f.map(x=>parseSigStr(x.oppTotStr)).filter(Boolean);
-  const oppTDL=f.map(x=>parseTD(x.oppTD)).filter(Boolean);
-  const oppCL=f.map(x=>parseCtrl(x.oppCtrl)).filter(Boolean);
-  const oppKDs=f.reduce((a,x)=>a+(isNaN(x.oppKD)?0:x.oppKD),0);
+// ── ADVANCED ─────────────────────────────────────────────────
+function buildAdvanced(){
+  const f=F, fn=f.length||1;
+  let mySL=0,mySA=0,myTL=0,myTA=0,myTDL=0,myTDA=0,myCS=0,myKD=0;
+  let oSL=0,oSA=0,oTL=0,oTA=0,oTDL=0,oTDA=0,oCS=0,oKD=0;
+  f.forEach(x=>{
+    const ms=parseFrac(x.mySigStr),mt=parseFrac(x.myTotStr),mtd=parseFrac(x.myTD),mc=parseSec(x.myCtrl);
+    const os=parseFrac(x.oppSigStr),ot=parseFrac(x.oppTotStr),otd=parseFrac(x.oppTD),oc=parseSec(x.oppCtrl);
+    if(ms){mySL+=ms.l;mySA+=ms.a;}
+    if(mt){myTL+=mt.l;myTA+=mt.a;}
+    if(mtd){myTDL+=mtd.l;myTDA+=mtd.a;}
+    if(mc!==null) myCS+=mc;
+    myKD+=isNaN(x.myKD)?0:x.myKD;
+    if(os){oSL+=os.l;oSA+=os.a;}
+    if(ot){oTL+=ot.l;oTA+=ot.a;}
+    if(otd){oTDL+=otd.l;oTDA+=otd.a;}
+    if(oc!==null) oCS+=oc;
+    oKD+=isNaN(x.oppKD)?0:x.oppKD;
+  });
 
-  const totalMySig=mySSL.reduce((a,x)=>a+x.l,0);
-  const totalMySigA=mySSL.reduce((a,x)=>a+x.a,0);
-  const totalMyTot=myTSL.reduce((a,x)=>a+x.l,0);
-  const totalMyTotA=myTSL.reduce((a,x)=>a+x.a,0);
-  const totalMyTD=myTDL.reduce((a,x)=>a+x.l,0);
-  const totalMyTDA=myTDL.reduce((a,x)=>a+x.a,0);
-  const totalMyCtrl=myCL.reduce((a,x)=>a+x,0);
-  const totalOppSig=oppSSL.reduce((a,x)=>a+x.l,0);
-  const totalOppSigA=oppSSL.reduce((a,x)=>a+x.a,0);
-  const totalOppTot=oppTSL.reduce((a,x)=>a+x.l,0);
-  const totalOppTotA=oppTSL.reduce((a,x)=>a+x.a,0);
-  const totalOppTD=oppTDL.reduce((a,x)=>a+x.l,0);
-  const totalOppTDA=oppTDL.reduce((a,x)=>a+x.a,0);
-  const totalOppCtrl=oppCL.reduce((a,x)=>a+x,0);
+  const aRow=(label,total,avg,color)=>`<div class="adv-row">
+    <div class="adv-label">${label}</div>
+    <div class="adv-vals">
+      <div class="adv-total" style="color:${color||'var(--text)'}">${total}</div>
+      <div class="adv-avg">${avg} / fight</div>
+    </div>
+  </div>`;
 
-  function advRows(rows){
-    return rows.map(r=>`<div class="adv-row">
-      <div class="adv-label">${r.label}</div>
-      <div class="adv-vals">
-        <div class="adv-total" style="color:${r.color||'var(--text)'}">${r.total}</div>
-        <div class="adv-avg">${r.avg} / fight</div>
+  document.getElementById('adv-my').innerHTML=
+    `<div class="card-label" style="margin-bottom:12px;color:var(--win)">Your Totals & Averages</div>`+
+    aRow('Sig Strikes Landed',mySL,fmt(mySL/fn,1),'var(--win)')+
+    aRow('Sig Strike Accuracy',mySA?pct(mySL,mySA)+'%':'—','—','var(--cyan)')+
+    aRow('Total Strikes Landed',myTL,fmt(myTL/fn,1))+
+    aRow('Takedowns Landed',myTDA?myTDL+'/'+myTDA:'—',fmt(myTDL/fn,1),'var(--cyan)')+
+    aRow('Control Time',fmtSec(myCS),fmtSec(Math.round(myCS/fn)))+
+    aRow('Knockdowns',myKD,fmt(myKD/fn,2),'var(--win)');
+
+  document.getElementById('adv-opp').innerHTML=
+    `<div class="card-label" style="margin-bottom:12px;color:var(--loss)">Opponent Totals & Averages</div>`+
+    aRow('Sig Strikes Landed',oSL,fmt(oSL/fn,1),'var(--loss)')+
+    aRow('Sig Strike Accuracy',oSA?pct(oSL,oSA)+'%':'—','—','var(--loss)')+
+    aRow('Total Strikes Landed',oTL,fmt(oTL/fn,1))+
+    aRow('Takedowns Landed',oTDA?oTDL+'/'+oTDA:'—',fmt(oTDL/fn,1))+
+    aRow('Control Time',fmtSec(oCS),fmtSec(Math.round(oCS/fn)))+
+    aRow('Knockdowns',oKD,fmt(oKD/fn,2),'var(--loss)');
+
+  document.getElementById('adv-eff').innerHTML=[
+    {l:'Sig Strike Acc.',my:mySA?pct(mySL,mySA):null,opp:oSA?pct(oSL,oSA):null,s:'%'},
+    {l:'Total Strike Acc.',my:myTA?pct(myTL,myTA):null,opp:oTA?pct(oTL,oTA):null,s:'%'},
+    {l:'TD Success',my:myTDA?pct(myTDL,myTDA):null,opp:oTDA?pct(oTDL,oTDA):null,s:'%'},
+  ].map(x=>`<div class="card">
+    <div class="card-label" style="margin-bottom:12px">${x.l}</div>
+    <div style="display:flex;gap:16px;align-items:flex-end">
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--win);margin-bottom:4px">YOU</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-size:32px;font-weight:700;color:${x.my!==null&&(x.opp===null||x.my>=x.opp)?'var(--win)':'var(--text)'}">${x.my!==null?x.my+x.s:'—'}</div>
+      </div>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text-faint);padding-bottom:8px">vs</div>
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--loss);margin-bottom:4px">OPP</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-size:32px;font-weight:700;color:${x.opp!==null&&(x.my===null||x.opp>x.my)?'var(--loss)':'var(--text)'}">${x.opp!==null?x.opp+x.s:'—'}</div>
+      </div>
+    </div>
+  </div>`).join('');
+
+  const r1=F.filter(x=>x.round===1).length,r2=F.filter(x=>x.round===2).length,r3=F.filter(x=>x.round===3).length;
+  const r1w=F.filter(x=>x.round===1&&x.result==='Win').length;
+  const r2w=F.filter(x=>x.round===2&&x.result==='Win').length;
+  const r3w=F.filter(x=>x.round===3&&x.result==='Win').length;
+  document.getElementById('adv-rounds').innerHTML=[{r:'Round 1',t:r1,w:r1w},{r:'Round 2',t:r2,w:r2w},{r:'Round 3',t:r3,w:r3w}]
+    .map(x=>`<div class="card">
+      <div class="card-label" style="margin-bottom:10px">${x.r}</div>
+      <div style="font-family:'Rajdhani',sans-serif;font-size:44px;font-weight:700;line-height:1">${x.t}</div>
+      <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--text-dim);margin-top:4px">fights ended</div>
+      <div style="margin-top:12px;display:flex;gap:12px">
+        <div><div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--win)">W</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--win)">${x.w}</div></div>
+        <div><div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--loss)">L</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--loss)">${x.t-x.w}</div></div>
+        <div><div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--text-faint)">W%</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700">${pct(x.w,x.t||1)}%</div></div>
       </div>
     </div>`).join('');
-  }
-
-  document.getElementById('adv-my').innerHTML=`<div class="card-label" style="margin-bottom:14px;color:var(--win)">Your Totals & Averages</div>`+advRows([
-    {label:'Sig Strikes Landed',total:totalMySig,avg:fmt(totalMySig/fn,1),color:'var(--win)'},
-    {label:'Sig Strike Accuracy',total:pct(totalMySig,totalMySigA||1)+'%',avg:fmt(avg(mySSL.map(x=>pct(x.l,x.a||1))),1)+'%',color:'var(--cyan)'},
-    {label:'Total Strikes Landed',total:totalMyTot,avg:fmt(totalMyTot/fn,1)},
-    {label:'Takedowns Landed',total:totalMyTD+'/'+totalMyTDA,avg:fmt(totalMyTD/fn,1)+' / fight',color:'var(--cyan)'},
-    {label:'Control Time (total)',total:fmtCtrl(totalMyCtrl),avg:fmtCtrl(Math.round(totalMyCtrl/fn))},
-    {label:'Knockdowns',total:myKDs,avg:fmt(myKDs/fn,2),color:'var(--win)'},
-  ]);
-
-  document.getElementById('adv-opp').innerHTML=`<div class="card-label" style="margin-bottom:14px;color:var(--loss)">Opponent Totals & Averages vs You</div>`+advRows([
-    {label:'Sig Strikes Landed',total:totalOppSig,avg:fmt(totalOppSig/fn,1),color:'var(--loss)'},
-    {label:'Sig Strike Accuracy',total:pct(totalOppSig,totalOppSigA||1)+'%',avg:fmt(avg(oppSSL.map(x=>pct(x.l,x.a||1))),1)+'%',color:'var(--loss)'},
-    {label:'Total Strikes Landed',total:totalOppTot,avg:fmt(totalOppTot/fn,1)},
-    {label:'Takedowns Landed',total:totalOppTD+'/'+totalOppTDA,avg:fmt(totalOppTD/fn,1)+' / fight'},
-    {label:'Control Time (total)',total:fmtCtrl(totalOppCtrl),avg:fmtCtrl(Math.round(totalOppCtrl/fn))},
-    {label:'Knockdowns',total:oppKDs,avg:fmt(oppKDs/fn,2),color:'var(--loss)'},
-  ]);
-
-  // Efficiency comparison
-  const mySigPct=pct(totalMySig,totalMySigA||1);
-  const oppSigPct=pct(totalOppSig,totalOppSigA||1);
-  const myTotPct=pct(totalMyTot,totalMyTotA||1);
-  const oppTotPct=pct(totalOppTot,totalOppTotA||1);
-  const myTDPct=pct(totalMyTD,totalMyTDA||1);
-  const oppTDPct=pct(totalOppTD,totalOppTDA||1);
-
-  document.getElementById('adv-efficiency').innerHTML=[
-    {label:'Sig Strike Acc.',my:mySigPct,opp:oppSigPct,suffix:'%'},
-    {label:'Total Strike Acc.',my:myTotPct,opp:oppTotPct,suffix:'%'},
-    {label:'TD Success Rate',my:myTDPct,opp:oppTDPct,suffix:'%'},
-  ].map(x=>`<div class="card">
-    <div class="card-label" style="margin-bottom:16px">${x.label}</div>
-    <div style="display:flex;gap:20px;align-items:flex-end">
-      <div>
-        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--win);margin-bottom:4px">YOU</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-size:36px;font-weight:700;color:${x.my>=x.opp?'var(--win)':'var(--text)'}">${x.my}${x.suffix}</div>
-      </div>
-      <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text-faint);padding-bottom:10px">vs</div>
-      <div>
-        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--loss);margin-bottom:4px">OPP</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-size:36px;font-weight:700;color:${x.opp>x.my?'var(--loss)':'var(--text)'}">${x.opp}${x.suffix}</div>
-      </div>
-    </div>
-  </div>`).join('');
-
-  // Round breakdown
-  const r1=f.filter(x=>x.round===1).length;
-  const r2=f.filter(x=>x.round===2).length;
-  const r3=f.filter(x=>x.round===3).length;
-  const r1w=f.filter(x=>x.round===1&&x.result==='Win').length;
-  const r2w=f.filter(x=>x.round===2&&x.result==='Win').length;
-  const r3w=f.filter(x=>x.round===3&&x.result==='Win').length;
-  document.getElementById('adv-rounds').innerHTML=[
-    {r:'Round 1',total:r1,wins:r1w},
-    {r:'Round 2',total:r2,wins:r2w},
-    {r:'Round 3',total:r3,wins:r3w},
-  ].map(x=>`<div class="card">
-    <div class="card-label" style="margin-bottom:12px">${x.r}</div>
-    <div style="font-family:'Rajdhani',sans-serif;font-size:48px;font-weight:700;line-height:1">${x.total}</div>
-    <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);margin-top:6px">fights ended</div>
-    <div style="margin-top:12px;display:flex;gap:16px">
-      <div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--win)">WINS</div><div style="font-family:'Rajdhani',sans-serif;font-size:24px;font-weight:700;color:var(--win)">${x.wins}</div></div>
-      <div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--loss)">LOSSES</div><div style="font-family:'Rajdhani',sans-serif;font-size:24px;font-weight:700;color:var(--loss)">${x.total-x.wins}</div></div>
-      <div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text-faint)">WIN%</div><div style="font-family:'Rajdhani',sans-serif;font-size:24px;font-weight:700">${pct(x.wins,x.total||1)}%</div></div>
-    </div>
-  </div>`).join('');
 }
 
 // ── INSIGHTS ─────────────────────────────────────────────────
-function buildInsights(f){
-  const w=f.filter(x=>x.result==='Win').length;
-  const myStats=calcFighterStats(f,'me').filter(s=>s.w+s.l>=MIN_FIGHTS);
-  myStats.forEach(s=>{s.total=s.w+s.l;s.wp=pct(s.w,s.total);});
-  const top5=[...myStats].sort((a,b)=>b.wp-a.wp||b.total-a.total).slice(0,5);
-  const worst5=[...myStats].sort((a,b)=>a.wp-b.wp||b.total-a.total).slice(0,5);
+function buildInsights(){
+  const f=F,w=f.filter(x=>x.result==='Win').length;
+  // My fighters
+  const myMap={};
+  f.forEach(x=>{
+    const k=x.me+'|'+x.div;
+    if(!myMap[k]) myMap[k]={name:x.me,div:x.div,w:0,l:0};
+    if(x.result==='Win') myMap[k].w++; else myMap[k].l++;
+  });
+  const myArr=Object.values(myMap).filter(s=>s.w+s.l>=MIN_F);
+  myArr.forEach(s=>{s.total=s.w+s.l;s.wp=pct(s.w,s.total);});
+  const top5=[...myArr].sort((a,b)=>b.wp-a.wp||b.total-a.total).slice(0,5);
+  const worst5=[...myArr].sort((a,b)=>a.wp-b.wp||b.total-a.total).slice(0,5);
 
-  // Best/worst sig str fights (min stats)
-  const withStats=f.filter(hasStats);
-  const bySigPct=withStats.map(x=>{
-    const s=parseSigStr(x.mySigStr);
-    return s?{...x,myPct:pct(s.l,s.a||1)}:null;
-  }).filter(Boolean);
-  const bestSig=[...bySigPct].sort((a,b)=>b.myPct-a.myPct).slice(0,3);
-  const worstSig=[...bySigPct].sort((a,b)=>a.myPct-b.myPct).slice(0,3);
-
-  // Best opp = you beat them most
+  // Opponents
   const oppMap={};
   f.forEach(x=>{
     const k=x.opp+'|'+x.div;
     if(!oppMap[k]) oppMap[k]={name:x.opp,div:x.div,w:0,l:0};
     if(x.result==='Win') oppMap[k].w++; else oppMap[k].l++;
   });
-  const oppArr=Object.values(oppMap).filter(o=>o.w+o.l>=MIN_FIGHTS);
-  oppArr.forEach(o=>{o.total=o.w+o.l;o.wp=pct(o.w,o.total);});
+  const oppArr=Object.values(oppMap).filter(s=>s.w+s.l>=MIN_F);
+  oppArr.forEach(s=>{s.total=s.w+s.l;s.wp=pct(s.w,s.total);});
   const bestOpp=[...oppArr].sort((a,b)=>b.wp-a.wp||b.total-a.total).slice(0,5);
   const worstOpp=[...oppArr].sort((a,b)=>a.wp-b.wp||b.total-a.total).slice(0,5);
 
+  // Best/worst striking
+  const withStats=f.filter(hasStats);
+  const bySig=withStats.map(x=>{
+    const s=parseFrac(x.mySigStr);
+    return s&&s.a>0?{...x,sp:pct(s.l,s.a)}:null;
+  }).filter(Boolean);
+  const bestSig=[...bySig].sort((a,b)=>b.sp-a.sp).slice(0,3);
+  const worstSig=[...bySig].sort((a,b)=>a.sp-b.sp).slice(0,3);
+
   // Streaks
-  let maxW=0,curW=0,wS=0,wE=0,wBest=[0,0];
+  let maxW=0,curW=0,wS=0,wBest=[0,0];
   let maxL=0,curL=0,lS=0,lBest=[0,0];
   f.forEach(x=>{
-    if(x.result==='Win'){if(curW===0)wS=x.n;curW++;wE=x.n;curL=0;if(curW>maxW){maxW=curW;wBest=[wS,wE];}}
+    if(x.result==='Win'){if(curW===0)wS=x.n;curW++;curL=0;if(curW>maxW){maxW=curW;wBest=[wS,x.n];}}
     else{if(curL===0)lS=x.n;curL++;curW=0;if(curL>maxL){maxL=curL;lBest=[lS,x.n];}}
   });
 
-  function rCards(arr,isWorst){
-    if(!arr.length) return `<div class="no-data">Not enough data (min ${MIN_FIGHTS} fights)</div>`;
-    return arr.map((s,i)=>`<div class="ranked-row">
-      <div class="rk-num ${i===0&&!isWorst?'top':''}">${i+1}</div>
-      <div class="rk-info"><div class="rk-name">${s.name}</div><div class="rk-sub">${s.div} · ${s.w}–${s.l} · ${s.total} fights</div></div>
-      <div class="rk-val ${isWorst?'loss':'win'}">${s.wp}%</div>
-    </div>`).join('');
-  }
-  function oppCards(arr,mode){
-    if(!arr.length) return `<div class="no-data">Not enough data (min ${MIN_FIGHTS} fights)</div>`;
-    return arr.map((s,i)=>`<div class="ranked-row">
-      <div class="rk-num ${i===0&&mode==='best'?'top':''}">${i+1}</div>
-      <div class="rk-info"><div class="rk-name">${s.name}</div><div class="rk-sub">${s.div} · You ${s.w}W–${s.l}L · ${s.total} fights</div></div>
-      <div class="rk-val ${mode==='best'?'win':'loss'}">${s.wp}%</div>
-    </div>`).join('');
-  }
-  function perfCards(arr,isWorst){
-    return arr.map((x,i)=>`<div class="ranked-row">
-      <div class="rk-num ${i===0&&!isWorst?'top':''}">${i+1}</div>
-      <div class="rk-info">
-        <div class="rk-name">${x.me} vs ${x.opp}</div>
-        <div class="rk-sub">#${x.n} · ${x.div} · ${x.result==='Win'?'W':'L'} · ${x.method}</div>
-      </div>
-      <div class="rk-val ${isWorst?'loss':'cyan'}">${x.myPct}%</div>
-    </div>`).join('');
-  }
+  const rCards=(arr,isWorst)=>arr.length
+    ?arr.map((s,i)=>`<div class="ranked-row">
+        <div class="rk-num ${i===0&&!isWorst?'top':''}">${i+1}</div>
+        <div class="rk-info"><div class="rk-name">${s.name}</div><div class="rk-sub">${s.div} · ${s.w}–${s.l} · ${s.total}f</div></div>
+        <div class="rk-val ${isWorst?'loss':'win'}">${s.wp}%</div>
+      </div>`).join('')
+    :`<div class="no-data">Min ${MIN_F} fights needed</div>`;
+
+  const oCards=(arr,mode)=>arr.length
+    ?arr.map((s,i)=>`<div class="ranked-row">
+        <div class="rk-num ${i===0&&mode==='best'?'top':''}">${i+1}</div>
+        <div class="rk-info"><div class="rk-name">${s.name}</div><div class="rk-sub">${s.div} · You ${s.w}W–${s.l}L</div></div>
+        <div class="rk-val ${mode==='best'?'win':'loss'}">${s.wp}%</div>
+      </div>`).join('')
+    :`<div class="no-data">Min ${MIN_F} fights needed</div>`;
+
+  const sCards=(arr,isWorst)=>arr.map((x,i)=>`<div class="ranked-row">
+    <div class="rk-num ${i===0&&!isWorst?'top':''}">${i+1}</div>
+    <div class="rk-info">
+      <div class="rk-name">${x.me} vs ${x.opp}</div>
+      <div class="rk-sub">#${x.n} · ${x.div} · ${x.result==='Win'?'W':'L'}</div>
+    </div>
+    <div class="rk-val ${isWorst?'loss':'cyan'}">${x.sp}%</div>
+  </div>`).join('');
 
   document.getElementById('insights-content').innerHTML=`
-    <div class="g g-2" style="margin-bottom:16px">
-      <div class="insight-card"><div class="ic-title">🏆 My Best Fighters (min ${MIN_FIGHTS} fights)</div>${rCards(top5,false)}</div>
-      <div class="insight-card"><div class="ic-title">⚠️ My Worst Fighters (min ${MIN_FIGHTS} fights)</div>${rCards(worst5,true)}</div>
+    <div class="g g-2" style="margin-bottom:14px">
+      <div class="insight-card"><div class="ic-title">🏆 Best Fighters (min ${MIN_F})</div>${rCards(top5,false)}</div>
+      <div class="insight-card"><div class="ic-title">⚠️ Worst Fighters (min ${MIN_F})</div>${rCards(worst5,true)}</div>
     </div>
-    <div class="g g-2" style="margin-bottom:16px">
-      <div class="insight-card"><div class="ic-title">✅ Best Opponents — You Win Most (min ${MIN_FIGHTS})</div>${oppCards(bestOpp,'best')}</div>
-      <div class="insight-card"><div class="ic-title">🔴 Worst Opponents — They Beat You Most (min ${MIN_FIGHTS})</div>${oppCards(worstOpp,'worst')}</div>
+    <div class="g g-2" style="margin-bottom:14px">
+      <div class="insight-card"><div class="ic-title">✅ Best Opponents — You Win Most</div>${oCards(bestOpp,'best')}</div>
+      <div class="insight-card"><div class="ic-title">🔴 Worst Opponents — They Beat You</div>${oCards(worstOpp,'worst')}</div>
     </div>
-    <div class="g g-2" style="margin-bottom:16px">
-      <div class="insight-card"><div class="ic-title">🎯 Best Striking Performances (Sig Str %)</div>${perfCards(bestSig,false)}</div>
-      <div class="insight-card"><div class="ic-title">📉 Worst Striking Performances (Sig Str %)</div>${perfCards(worstSig,true)}</div>
+    <div class="g g-2" style="margin-bottom:14px">
+      <div class="insight-card"><div class="ic-title">🎯 Best Striking Performances</div>${sCards(bestSig,false)}</div>
+      <div class="insight-card"><div class="ic-title">📉 Worst Striking Performances</div>${sCards(worstSig,true)}</div>
     </div>
     <div class="g g-2">
       <div class="insight-card">
-        <div class="ic-title">🔥 Biggest Win Streak</div>
+        <div class="ic-title">🔥 Win Streak</div>
         <div class="streak-big" style="color:var(--win)">${maxW}</div>
         <div class="streak-label">Fights #${wBest[0]}–${wBest[1]}</div>
       </div>
       <div class="insight-card">
-        <div class="ic-title">📉 Biggest Loss Streak</div>
+        <div class="ic-title">📉 Loss Streak</div>
         <div class="streak-big" style="color:var(--loss)">${maxL}</div>
         <div class="streak-label">Fights #${lBest[0]}–${lBest[1]}</div>
       </div>
@@ -1828,6 +870,5 @@ document.querySelectorAll('.nav-btn').forEach(b=>{
 
 loadData();
 </script>
-
-
-</body></html>
+</body>
+</html>
